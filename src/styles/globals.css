@@ -46,4 +46,5 @@ body {
 
 #root {
   flex: 1;
+  display: flex;
 }

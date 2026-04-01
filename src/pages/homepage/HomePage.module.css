@@ -1,0 +1,26 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.logoHeading {
+  font-family: "Viga", "Cizel";
+  font-size: 3rem;
+  color: transparent;
+
+  font-size: 64px;
+  font-weight: 900;
+
+  background: linear-gradient(to bottom, rgb(236, 210, 39), rgb(209, 136, 19));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.infoPara {
+  font-size: 1.3rem;
+  margin: 10px;
+  color: blue;
+}

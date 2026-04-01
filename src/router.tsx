@@ -7,6 +7,7 @@ import { homepageButtons } from "@/data/layout-buttons";
 
 import MainLayout from "@/layouts/MainLayout";
 import HomePage from "@/pages/homepage/HomePage";
+import GamePage from "@/pages/gamepage/GamePage";
 
 const routes: RouteObject[] = [
   {
@@ -16,6 +17,10 @@ const routes: RouteObject[] = [
       {
         element: <HomePage />,
         index: true,
+      },
+      {
+        path: "/playground",
+        element: <GamePage />,
       },
     ],
   },
