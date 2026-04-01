@@ -1,0 +1,8 @@
+#root {
+  background-image: url("/desert-background.jpg");
+  background-position: center;
+  background-attachment: fixed;
+  background-clip: border-box;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

@@ -1,0 +1,92 @@
+.mainlayout-buttons {
+  display: inline-block;
+  padding: 14px 28px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-decoration: none;
+  position: fixed;
+  color: #5a2e1a;
+  font-family:
+    "Cinzel",
+    "Fredoka",
+    "Google Sans",
+    system-ui,
+    -apple-system;
+
+  background: linear-gradient(#d9b47a, #c79a5c);
+  border-radius: 12px;
+
+  border: 3px solid #8b5a2b;
+
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.4),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.3),
+    3px 4px 0 #5a2e1a;
+}
+
+.mainlayout-buttons:visited {
+  text-decoration: none;
+  color: #5a2e1a;
+}
+
+.mainlayout-buttons::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 16px;
+
+  background: linear-gradient(#e0c08a, #b98a50);
+  border: 2px solid #6e4523;
+
+  z-index: -1;
+
+  box-shadow: 2px 3px 0 #4a2a15;
+}
+
+.mainlayout-buttons::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.2),
+    1px 1px 0 rgba(255, 255, 255, 0.2);
+
+  pointer-events: none;
+}
+.mainlayout-buttons:hover {
+  filter: brightness(1.05);
+
+  box-shadow:
+    0 6px 0 #5a2e1a,
+    inset 2px 2px 4px rgba(255, 255, 255, 0.35),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.4);
+}
+.mainlayout-buttons:active {
+  transform: translateY(4px);
+
+  box-shadow:
+    0 1px 0 #5a2e1a,
+    inset 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.top-left {
+  top: 20px;
+  left: 50px;
+}
+
+.bottom-left {
+  bottom: 20px;
+  left: 50px;
+}
+
+.top-right {
+  top: 20px;
+  right: 50px;
+}
+
+.bottom-right {
+  bottom: 20px;
+  right: 50px;
+}

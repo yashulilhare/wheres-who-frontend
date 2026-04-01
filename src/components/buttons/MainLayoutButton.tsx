@@ -8,7 +8,7 @@ interface MainLayoutButtonProps {
 
 const MainLayoutButton = ({ text, className, url }: MainLayoutButtonProps) => {
   return (
-    <a href={url} className={className}>
+    <a href={url} className={`${className} mainlayout-buttons`}>
       {text}
     </a>
   );

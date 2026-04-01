@@ -1,12 +1,49 @@
 /* this file contain only global styles + css variables */
+@font-face {
+  font-family: "Cinzel";
+  src: url("/fonts1/Cinzel-VariableFont_wght.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Fredoka";
+  src: url("/fonts1/Fredoka-VariableFont_wdth,wght.ttf") format("truetype");
+  font-display: swap;
+}
 
+@font-face {
+  font-family: "Viga";
+  src: url("/fonts1/Viga-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  font-family:
+    "Fredoka",
+    "Cinzel",
+    "Google Sans",
+    system-ui,
+    -apple-system;
+}
+
+* {
+  box-sizing: border-box;
+}
 html {
   margin: 0;
   padding: 0;
+  border: none;
+  min-height: 100vh;
+  display: flex;
 }
 
 body {
-  font-size: 1rem;
-  line-height: 1.5;
   margin: 0;
+  padding: 0;
+  border: none;
+  flex: 1;
+  display: flex;
+}
+
+#root {
+  flex: 1;
 }
