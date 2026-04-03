@@ -1,0 +1,24 @@
+.card > a {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+
+  background-color: rgb(63, 21, 21);
+
+  color: gold;
+  text-align: center;
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-family: "Cinzel";
+
+  border: 5px solid rgb(53, 20, 20);
+}
+
+.card > a:visited {
+  text-decoration: none;
+  color: gold;
+}
+.card > a > img {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}

@@ -3,6 +3,8 @@
 import backgroundStyles from "@/styles/desert-background.module.css";
 import styles from "./HomePage.module.css";
 
+import ModeCardContainer from "@/components/containers/ModeCardContainer";
+
 const HomePage = () => {
   return (
     <main className={`${backgroundStyles.main} ${styles.main}`}>
@@ -16,6 +18,7 @@ const HomePage = () => {
       <p className={styles.infoPara}>
         Find them as quickly as possible to earn a spot on the leaderboard.
       </p>
+      <ModeCardContainer />
     </main>
   );
 };

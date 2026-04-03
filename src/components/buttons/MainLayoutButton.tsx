@@ -1,5 +1,6 @@
 "use strict";
 
+import { Link } from "react-router-dom";
 interface MainLayoutButtonProps {
   text: string;
   className: string;
@@ -8,9 +9,9 @@ interface MainLayoutButtonProps {
 
 const MainLayoutButton = ({ text, className, url }: MainLayoutButtonProps) => {
   return (
-    <a href={url} className={`${className} mainlayout-buttons`}>
+    <Link to={url || "/"} className={`${className} mainlayout-buttons`}>
       {text}
-    </a>
+    </Link>
   );
 };
 
