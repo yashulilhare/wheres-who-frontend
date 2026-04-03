@@ -9,6 +9,10 @@ import MainLayout from "@/layouts/MainLayout";
 import HomePage from "@/pages/homepage/HomePage";
 import PlayGround from "@/pages/playground/PlayGround";
 
+import Undrcity from "./pages/undrcity/Undrcity";
+import UniverseXIII from "./pages/universe113/Universe113";
+import Pokeverse from "./pages/pokeverse/Pokeverse";
+
 const routes: RouteObject[] = [
   {
     path: "/",
@@ -19,11 +23,22 @@ const routes: RouteObject[] = [
         index: true,
       },
       {
-        path: "/playground",
+        path: "playground",
         element: <PlayGround />,
-        children:[
-          
-        ]
+        children: [
+          {
+            path: "undrcity",
+            element: <Undrcity />,
+          },
+          {
+            path: "universe113",
+            element: <UniverseXIII />,
+          },
+          {
+            path: "pokeverse",
+            element: <Pokeverse />,
+          },
+        ],
       },
     ],
   },
