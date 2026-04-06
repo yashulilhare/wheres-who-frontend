@@ -1,4 +1,11 @@
 .img {
   width: 100%;
   height: auto;
+  padding: 0;
+  border: none;
+  outline: none;
+  cursor:
+    url("/src/assets/icons/crosshair-64.png"),
+    url("/src/assets/icons/crosshair-focus.png"),
+    url("/src/assets/icons/crosshair-red.png"), auto;
 }
