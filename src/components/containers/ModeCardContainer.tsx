@@ -15,6 +15,7 @@ const ModeCardContainer = () => {
             imageUrl={mode.imageUrl}
             pageName={mode.name}
             altText={mode.description}
+            key={mode.name}
           />
         );
       })}

@@ -11,7 +11,7 @@ interface ModeCardProps {
 const ModeCard = ({ imageUrl, pageUrl, pageName, altText }: ModeCardProps) => {
   return (
     <div className={style.card}>
-      <Link to={`/playground/${pageUrl}`}>
+      <Link to={`/playground/:${pageUrl}`}>
         <img src={imageUrl} alt={altText} />
         <h2>{pageName}</h2>
       </Link>

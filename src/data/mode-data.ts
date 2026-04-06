@@ -5,17 +5,20 @@ class Mode {
   pagePath: string;
   name: string;
   description: string;
+  modeImageUrl: string;
 
   constructor(
     imageUrl: string,
     pagePath: string,
     name: string,
     description: string,
+    modeImageUrl: string,
   ) {
     this.imageUrl = imageUrl;
     this.pagePath = pagePath;
     this.name = name;
     this.description = description;
+    this.modeImageUrl = modeImageUrl;
   }
 }
 
@@ -24,6 +27,7 @@ export const undrcity = new Mode(
   "undrcity",
   "Undrcity",
   "Image is banner for Undrcity mode.",
+  "/images/undrcity.jpg",
 );
 
 export const universe113 = new Mode(
@@ -31,6 +35,7 @@ export const universe113 = new Mode(
   "universe113",
   "Universe113",
   "Image is banner for universe113 mode.",
+  "/images/universe113.jpg",
 );
 
 export const pokeverse = new Mode(
@@ -38,6 +43,7 @@ export const pokeverse = new Mode(
   "pokeverse",
   "Pokeverse",
   "pokeverse mode images demo",
+  "/images/pokemon.jpg",
 );
 
 export const modeList = [undrcity, universe113, pokeverse];

@@ -18,6 +18,7 @@ const MainLayout = ({ buttons }: MainLayoutProps) => {
             url={button?.url || "/homepage"}
             text={button.text}
             className={button.className}
+            key={button.text}
           />
         );
       })}
