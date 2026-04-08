@@ -1,0 +1,39 @@
+.form {
+  min-width: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(247, 187, 75);
+  padding: 30px;
+  border-radius: 8px;
+  gap: 20px;
+}
+
+.form > div.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.inputContainer > label {
+  color: white;
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+.inputContainer > input {
+  outline: 1px solid gray;
+  border: 1px solid gray;
+  padding: 5px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+}
+
+.form > button {
+  background-color: rgb(240, 64, 64);
+  font-size: 1.1rem;
+  padding: 8px;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-weight: 500;
+}

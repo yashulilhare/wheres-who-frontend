@@ -7,6 +7,7 @@ export async function api(url: string, options: RequestInit = {}) {
       "Content-Type": "application/json",
       ...(options.headers || {}),
     },
+    credentials: "omit",
     ...options,
   });
   return res;

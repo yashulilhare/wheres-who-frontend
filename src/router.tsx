@@ -8,6 +8,7 @@ import { homepageButtons } from "@/data/layout-buttons";
 import MainLayout from "@/layouts/MainLayout";
 import HomePage from "@/pages/homepage/HomePage";
 import PlayGround from "@/pages/playground/PlayGround";
+import AuthPage from "@/pages/authpage/AuthPage";
 
 const routes: RouteObject[] = [
   {
@@ -22,6 +23,7 @@ const routes: RouteObject[] = [
         path: "playground/:mode",
         element: <PlayGround />,
       },
+      { path: "auth", element: <AuthPage /> },
     ],
   },
 ];
