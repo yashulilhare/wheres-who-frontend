@@ -37,3 +37,11 @@
   border-radius: 8px;
   font-weight: 500;
 }
+
+.instructions {
+  text-align: center;
+  line-height: 1.8;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: green;
+}

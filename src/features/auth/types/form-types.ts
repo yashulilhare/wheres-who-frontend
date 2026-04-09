@@ -3,4 +3,8 @@ interface AuthData {
   password: string;
 }
 
-export type { AuthData };
+interface AuthFormProps {
+  changeForm(authMode: "login" | "register"): void;
+}
+
+export type { AuthData, AuthFormProps };

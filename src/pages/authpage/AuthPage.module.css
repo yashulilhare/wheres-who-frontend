@@ -5,11 +5,3 @@
   justify-content: center;
   flex-direction: column;
 }
-
-.instructions {
-  text-align: center;
-  line-height: 1.8;
-  font-size: 1.4rem;
-  font-weight: 500;
-  color: green;
-}

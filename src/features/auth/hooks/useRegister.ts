@@ -2,6 +2,7 @@ import { useState } from "react";
 import register from "../api/register";
 
 import type { AuthData } from "../types/form-types";
+import type { ApiAuthResponse } from "../types/api-types";
 
 // ValidationError is validationResult error thrown from express-validator module on sever
 interface ValidationError {
@@ -10,12 +11,6 @@ interface ValidationError {
   msg: string;
   path: string;
   location: string;
-}
-
-interface ApiRegisterResponse {
-  message: string;
-  token: string;
-  user: { id: string; username: string };
 }
 
 interface ApiError {
@@ -39,12 +34,11 @@ const useRegister = () => {
         setError(errorData as ApiError);
         return;
       }
-      const resData = (await res.json()) as ApiRegisterResponse;
+      const resData = (await res.json()) as ApiAuthResponse;
 
       localStorage.setItem("token", resData.token);
       localStorage.setItem("user", JSON.stringify(resData.user));
 
-      console.log(resData);
     } catch (err) {
       console.error(err);
       setError({ message: "network connection lost;" } as ApiError);

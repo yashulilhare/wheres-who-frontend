@@ -1,16 +1,21 @@
 import styles from "./AuthPage.module.css";
 import backgroundStyles from "@/styles/desert-background.module.css";
-import AuthForm from "@/features/auth/components/AuthForm";
+import RegisterForm from "@/features/auth/components/RegisterForm";
+import LoginForm from "@/features/auth/components/LoginForm";
+import { useState } from "react";
 
 const AuthPage = () => {
+  const [selectedForm, setSelectedForm] = useState<"login" | "register">(
+    "login",
+  );
+
+  const changeForm = (authMode: "login" | "register") => {
+    setSelectedForm(authMode)
+  };
   return (
     <main className={`${styles.main} ${backgroundStyles.main}`}>
-      <p className={styles.instructions}>
-        Wait! Wait! You need to have an account before moving forward. <br />
-        Already have an account? Fill up your current credentials. <br />
-        OR fill up with new data to create a new account.
-      </p>
-      <AuthForm />
+      {selectedForm === "register" && <RegisterForm changeForm={changeForm}/>}
+      {selectedForm === "login" && <LoginForm changeForm={changeForm}/>}
     </main>
   );
 };
