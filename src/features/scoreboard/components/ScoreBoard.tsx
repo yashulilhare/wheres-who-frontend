@@ -9,8 +9,8 @@ interface ImageCardProps {
 }
 const ImageCard = ({ name, imageCode, modeName }: ImageCardProps) => {
   return (
-    <div>
-      <div className={styles.ImgOverLayer}></div>
+    <div className={styles.imgCard}>
+      <div className={styles.imgOverLayer}></div>
       <img
         src={`/characters/${modeName}/${imageCode}.png`}
         alt={`Image for character ${name}`}
@@ -21,7 +21,7 @@ const ImageCard = ({ name, imageCode, modeName }: ImageCardProps) => {
 
 const InnocentKills = ({ innocentKills }: { innocentKills: number }) => {
   return (
-    <div className={styles.incKillsCard}>
+    <div className={styles.scoreContainer}>
       <p className={styles.cardTitle}>Innocent Kills</p>
       <p className={styles.score}>{innocentKills}</p>
     </div>
@@ -55,9 +55,9 @@ const Timer = ({ resumeFrom }: TimerProps) => {
   }, [timer]);
 
   return (
-    <div className={styles.timer}>
+    <div className={styles.scoreContainer}>
       <p className={styles.cardTitle}>Score</p>
-      <p className={styles.timerScore}>{formatTime(timer)}</p>
+      <p className={styles.score}>{formatTime(timer)}</p>
     </div>
   );
 };
@@ -75,16 +75,18 @@ interface ScoreBoardProps {
 const ScoreBoard = ({ characters, gameStatus }: ScoreBoardProps) => {
   return (
     <section className={styles.container}>
-      {characters.map((char) => {
-        return (
-          <ImageCard
-            name={char.name}
-            modeName={char.modeName}
-            imageCode={char.imageCode}
-            key={char.name}
-          />
-        );
-      })}
+      <div className={styles.imageContainer}>
+        {characters.map((char) => {
+          return (
+            <ImageCard
+              name={char.name}
+              modeName={char.modeName}
+              imageCode={char.imageCode}
+              key={char.name}
+            />
+          );
+        })}
+      </div>
       <InnocentKills innocentKills={gameStatus.innocentKills} />
       <Timer resumeFrom={gameStatus.resumeFrom} />
     </section>

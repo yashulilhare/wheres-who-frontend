@@ -1,0 +1,57 @@
+.container {
+  position: fixed;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+  display: flex;
+  padding: 3px;
+  gap: 8px;
+  background-color: orange;
+  border-radius: 8px;
+}
+
+/* ImageCard styles */
+.imageContainer {
+  display: flex;
+  gap: 8px;
+}
+.imgCard {
+  position: relative;
+}
+
+.imgCard > img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  cursor: help;
+}
+
+/* Score component styles */
+
+.scoreContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  border-radius: 8px;
+  min-width: 100px;
+  padding: 3px;
+}
+
+.scoreContainer > p {
+  margin: 0;
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 1.3rem;
+  color: gold;
+  font-weight: 500;
+}
+
+.score {
+  font-size: 1.1rem;
+  color: white;
+  font-weight: 500;
+}
