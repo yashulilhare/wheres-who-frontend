@@ -1,0 +1,14 @@
+.spacebar {
+  height: 100px;
+  background-color: black;
+  border-radius: 8px;
+  margin: 0px;
+}
+
+.borderBottom {
+  border-bottom: 3px solid gold;
+}
+
+.borderTop {
+  border-top: 3px solid gold;
+}

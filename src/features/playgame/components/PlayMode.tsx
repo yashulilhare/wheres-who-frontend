@@ -103,7 +103,6 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
           }))}
         />
       )}
-      (
       <img
         src={modeData?.modeImageUrl}
         alt={modeData?.description}
@@ -112,7 +111,6 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
           //todo: pass handleClick
         }}
       />
-      )
     </>
   );
 };
