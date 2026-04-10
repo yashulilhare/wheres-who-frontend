@@ -1,0 +1,59 @@
+.container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 0, 0, 0.9);
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(243, 69, 98);
+  border: 3px solid orange;
+  padding: 20px;
+  gap: 20px;
+  border-radius: 8px;
+}
+.contentWrapper > p {
+  font-size: 1.5rem;
+  text-align: center;
+  width: 100%;
+  background-color: yellow;
+  border-radius: 8px;
+}
+
+.contentWrapper > button {
+  font-size: 1.4rem;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+/* ImageCard styles */
+.imgContainer {
+  display: flex;
+  gap: 10px;
+}
+.imgCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 5px;
+  max-width: 200px;
+  align-items: center;
+  border-radius: 8px;
+  background-color: black;
+}
+.imgCard > img {
+  width: 200px;
+  height: 200px;
+  margin: 0;
+  border-radius: 8px;
+}
+.imgCard > p {
+  margin: 0;
+  color: gold;
+  font-size: 1.1rem;
+  text-align: center;
+}

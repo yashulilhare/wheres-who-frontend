@@ -2,6 +2,7 @@ import Mode from "@/data/mode-data";
 import styles from "./PlayMode.module.css";
 import { useEffect, useState } from "react";
 import StartGame from "./StartGame";
+import LoadingFull from "@/components/containers/LoadingFull";
 import useImageLoader from "../hooks/useImageLoader";
 
 import type { CharacterInfo } from "../types/playmode";
@@ -91,7 +92,7 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
 
   return (
     <>
-      {!isReady && !isStarted && <h1>Setting up your game....</h1>}
+      {!isReady && !isStarted && <LoadingFull />}
       {!isStarted && gameData && isReady && (
         <StartGame
           startGame={startGame}
@@ -102,6 +103,7 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
           }))}
         />
       )}
+      (
       <img
         src={modeData?.modeImageUrl}
         alt={modeData?.description}
@@ -110,6 +112,7 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
           //todo: pass handleClick
         }}
       />
+      )
     </>
   );
 };

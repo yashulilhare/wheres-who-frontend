@@ -6,6 +6,7 @@
   text-decoration: none;
   position: fixed;
   color: #5a2e1a;
+  z-index: 99;
   font-family:
     "Cinzel",
     "Fredoka",

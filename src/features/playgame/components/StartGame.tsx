@@ -11,11 +11,11 @@ interface StartGameProps {
   characters: CharacterData[];
 }
 
-const ImageCard = ({ url }: { url: string }) => {
+const ImageCard = ({ url, charName }: { url: string; charName: string }) => {
   return (
     <div className={styles.imgCard}>
-      <img src={url} alt="" />
-      <p></p>
+      <img src={url} alt={charName} />
+      <p>{charName}</p>
     </div>
   );
 };
@@ -23,17 +23,21 @@ const ImageCard = ({ url }: { url: string }) => {
 const StartGame = ({ startGame, characters }: StartGameProps) => {
   return (
     <div className={styles.container}>
-      <p>Shot these criminals.</p>
-      <div className={styles.imgContainer}>
-        {characters.map((char) => {
-          return (
-            <ImageCard
-              url={`/characters/${char.modeName}/${char.imageCode}.png`}
-            />
-          );
-        })}
+      <div className={styles.contentWrapper}>
+        <p>Characters to shot</p>
+        <div className={styles.imgContainer}>
+          {characters.map((char) => {
+            return (
+              <ImageCard
+                url={`/characters/${char.modeName}/${char.imageCode}.png`}
+                key={char.name}
+                charName={char.name}
+              />
+            );
+          })}
+        </div>
+        <button onClick={startGame}>Start</button>
       </div>
-      <button onClick={startGame}>Start</button>
     </div>
   );
 };

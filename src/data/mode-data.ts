@@ -43,7 +43,7 @@ export const pokeverse = new Mode(
   "pokeverse",
   "Pokeverse",
   "pokeverse mode images demo",
-  "/images/pokemon.jpg",
+  "/images/pokeverse.jpg",
 );
 
 export const modeList = [undrcity, universe113, pokeverse];
