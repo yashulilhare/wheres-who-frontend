@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import PlayMode from "@/components/containers/PlayMode";
+import { PlayMode } from "@/features/playgame";
 
 import { modeList } from "@/data/mode-data";
 import { useMemo } from "react";

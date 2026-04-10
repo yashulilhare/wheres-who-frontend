@@ -1,38 +1,19 @@
 import Mode from "@/data/mode-data";
 import styles from "./PlayMode.module.css";
+import { useEffect, useState } from "react";
+import StartGame from "./StartGame";
+import useImageLoader from "../hooks/useImageLoader";
+
+import type { CharacterInfo } from "../types/playmode";
+// temporary imports
+import { getGameData } from "@/mock-server/getGameData";
 
 interface PlayModeProps {
   modeData: Mode | null;
   mode: string;
 }
 
-const mockData = [
-  {
-    id: "41b7e6ee-3e89-4c20-81be-bc12a5c4f693",
-    name: "Nightcrawler - from X-men",
-    imageCode: 1,
-    xposition: 83.33,
-    yposition: 20.43,
-    modeId: 13,
-  },
-  {
-    id: "0a7bd923-ab52-4bde-b95f-65b32836aabc",
-    name: "Bubble head nurse",
-    imageCode: 2,
-    xposition: 46.46,
-    yposition: 43.47,
-    modeId: 13,
-  },
-  {
-    id: "71d8311d-f987-4f52-a6c4-3c3b30512b47",
-    name: "Storyteller Chef",
-    imageCode: 3,
-    xposition: 5,
-    yposition: 87.56,
-    modeId: 13,
-  },
-];
-
+/*
 interface Points {
   x: number;
   y: number;
@@ -47,9 +28,36 @@ const isMatch = (stored: Points, clicked: Points): boolean => {
   if (diffX > 5 && diffY > 5) return false;
   else return true;
 };
+*/
 
+// root component
 const PlayMode = ({ modeData }: PlayModeProps) => {
+  const [isStarted, setIsStarted] = useState(false);
+  const [gameData, setGameData] = useState<CharacterInfo[] | null>(null);
+
+  useEffect(() => {
+    const mockFetch = async () => {
+      const data = await getGameData();
+      setGameData(data);
+    };
+    mockFetch();
+  });
+
+  const isReady = useImageLoader(
+    gameData?.map((d) => {
+      const imgSrc = `/characters/${d.modeName}/${d.imageCode}.png`;
+      return imgSrc;
+    }) || null,
+  );
+
+  const startGame = () => {
+    setIsStarted(true);
+  };
+
+  /*
   const handleClick = (e: React.MouseEvent<HTMLImageElement>) => {
+    e.preventDefault();
+    if (!isStarted) return;
     // const img = e.currentTarget;
     const rect = e.currentTarget.getBoundingClientRect();
 
@@ -79,17 +87,31 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
       alert(res);
     }
   };
+*/
 
   return (
     <>
+      {!isReady && !isStarted && <h1>Setting up your game....</h1>}
+      {!isStarted && gameData && isReady && (
+        <StartGame
+          startGame={startGame}
+          characters={gameData.map((d) => ({
+            name: d.name || "Unknown",
+            imageCode: d.imageCode,
+            modeName: d.modeName,
+          }))}
+        />
+      )}
       <img
         src={modeData?.modeImageUrl}
         alt={modeData?.description}
         className={styles.img}
-        onClick={handleClick}
+        onClick={() => {
+          //todo: pass handleClick
+        }}
       />
     </>
   );
 };
 
-export default PlayMode;
+export { PlayMode };

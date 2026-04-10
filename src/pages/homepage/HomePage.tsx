@@ -10,9 +10,11 @@ const HomePage = () => {
     <main className={`${backgroundStyles.main} ${styles.main}`}>
       <h1 className={styles.logoHeading}>Where's Who?</h1>
       <p className={styles.infoPara}>
-        Choose an image below and clock will start. Your HUD wil display the
-        timer and remaining characters to find. Find them as quickly as possible
-        to earn a spot on the leaderboard.
+        Some person and some animals have committed deadly crimes and your job
+        is to hunt them down and shot them on the spot. The quicker you shot all
+        the criminals with minimal innocent kills, the better you are counted.{" "}
+        <br />
+        Select the universe to start your duty.
       </p>
 
       <ModeCardContainer />

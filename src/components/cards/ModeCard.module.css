@@ -1,4 +1,4 @@
-.card > a {
+.card {
   display: flex;
   flex-direction: column;
   border-radius: 8px;
@@ -14,11 +14,11 @@
   border: 5px solid rgb(53, 20, 20);
 }
 
-.card > a:visited {
+.card {
   text-decoration: none;
   color: gold;
 }
-.card > a > img {
+.card > img {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
