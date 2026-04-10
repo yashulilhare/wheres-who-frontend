@@ -5,9 +5,10 @@ import StartGame from "./StartGame";
 import LoadingFull from "@/components/containers/LoadingFull";
 import useImageLoader from "../hooks/useImageLoader";
 
-import type { CharacterInfo } from "../types/playmode";
+import type { CharacterInfo, GameStatusData } from "../types/playmode";
 // temporary imports
 import { getGameData } from "@/mock-server/getGameData";
+import ScoreBoard from "@/features/scoreboard/components/ScoreBoard";
 
 interface PlayModeProps {
   modeData: Mode | null;
@@ -35,14 +36,22 @@ const isMatch = (stored: Points, clicked: Points): boolean => {
 const PlayMode = ({ modeData }: PlayModeProps) => {
   const [isStarted, setIsStarted] = useState(false);
   const [gameData, setGameData] = useState<CharacterInfo[] | null>(null);
+  const [gameStatus, setGameStatus] = useState<GameStatusData | null>(null);
 
   useEffect(() => {
     const mockFetch = async () => {
       const data = await getGameData();
       setGameData(data);
+      setGameStatus({
+        characters: data.map((d) => {
+          return { id: d.id, found: d.found };
+        }),
+        innocentKills: 0,
+        resumeFrom: 0,
+      });
     };
     mockFetch();
-  });
+  }, []);
 
   const isReady = useImageLoader(
     gameData?.map((d) => {
@@ -97,6 +106,17 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
         <StartGame
           startGame={startGame}
           characters={gameData.map((d) => ({
+            name: d.name || "Unknown",
+            imageCode: d.imageCode,
+            modeName: d.modeName,
+          }))}
+        />
+      )}
+      {isStarted && isReady && gameStatus && gameData && (
+        <ScoreBoard
+          gameStatus={gameStatus}
+          characters={gameData.map((d) => ({
+            id: d.id ,
             name: d.name || "Unknown",
             imageCode: d.imageCode,
             modeName: d.modeName,

@@ -3,7 +3,19 @@ interface CharacterInfo {
   name?: string;
   imageCode: number;
   modeId: number;
-  modeName:string;
+  modeName: string;
+  found: boolean;
 }
 
-export type { CharacterInfo };
+interface CharacterStatus {
+  id: string;
+  found: boolean;
+}
+
+interface GameStatusData {
+  characters: CharacterStatus[];
+  resumeFrom: number;
+  innocentKills: number;
+}
+
+export type { CharacterInfo, GameStatusData };

@@ -9,6 +9,7 @@ const mockData = [
     yposition: 20.43,
     modeId: 13,
     modeName: "undrcity",
+    found: false,
   },
   {
     id: "0a7bd923-ab52-4bde-b95f-65b32836aabc",
@@ -18,6 +19,7 @@ const mockData = [
     yposition: 43.47,
     modeId: 13,
     modeName: "undrcity",
+    found: false,
   },
   {
     id: "71d8311d-f987-4f52-a6c4-3c3b30512b47",
@@ -27,6 +29,7 @@ const mockData = [
     yposition: 87.56,
     modeId: 13,
     modeName: "undrcity",
+    found: true,
   },
 ];
 
@@ -39,7 +42,8 @@ const getGameData = async () => {
           name: m.name,
           imageCode: m.imageCode,
           modeId: m.modeId,
-          modeName:m.modeName
+          modeName: m.modeName,
+          found: m.found,
         };
       });
       resolve(charData);
