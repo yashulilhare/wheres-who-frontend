@@ -3,6 +3,7 @@ import styles from "./PlayMode.module.css";
 import { useEffect, useState } from "react";
 import StartGame from "./StartGame";
 import LoadingFull from "@/components/containers/LoadingFull";
+import { SelectCharacter } from "./SelectCharacter";
 import useImageLoader from "../hooks/useImageLoader";
 
 import type { CharacterInfo, GameStatusData } from "../types/playmode";
@@ -37,6 +38,8 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
   const [isStarted, setIsStarted] = useState(false);
   const [gameData, setGameData] = useState<CharacterInfo[] | null>(null);
   const [gameStatus, setGameStatus] = useState<GameStatusData | null>(null);
+  const [optionsMenuPos, setOptionsMenuPos] = useState({ x: 0, y: 0 });
+  const [optionsOpen, setOptionsOpen] = useState(false);
 
   useEffect(() => {
     const mockFetch = async () => {
@@ -44,13 +47,29 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
       setGameData(data);
       setGameStatus({
         characters: data.map((d) => {
-          return { id: d.id, found: d.found };
+          return {
+            id: d.id,
+            name: d.name || "Unknown",
+            modeName: d.modeName,
+            imageCode: d.imageCode,
+            found: d.found,
+          };
         }),
         innocentKills: 0,
         resumeFrom: 0,
       });
     };
     mockFetch();
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setOptionsOpen(false);
+    };
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const isReady = useImageLoader(
@@ -64,22 +83,28 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
     setIsStarted(true);
   };
 
-  /*
   const handleClick = (e: React.MouseEvent<HTMLImageElement>) => {
     e.preventDefault();
+    e.stopPropagation();
     if (!isStarted) return;
-    // const img = e.currentTarget;
+    const posX = e.clientX;
+    const posY = e.clientY;
+
+    setOptionsMenuPos({ x: posX, y: posY });
+    setOptionsOpen(true);
+
+    /*
     const rect = e.currentTarget.getBoundingClientRect();
 
     const currentWidth = rect.width;
     const currentHeight = rect.height;
-
+    
     const clickX = e.clientX - rect.left;
     const clickY = e.clientY - rect.top;
-
+    
     const percentX = (clickX / currentWidth) * 100;
     const percentY = (clickY / currentHeight) * 100;
-
+    
     const userValue = prompt("select your result from 1 t  3");
 
     const assumed = mockData.find((item) => {
@@ -96,9 +121,12 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
       );
       alert(res);
     }
+    */
   };
-*/
 
+  const closeOptionsMenu = () => {
+    setOptionsOpen(false);
+  };
   return (
     <>
       {!isReady && !isStarted && <LoadingFull />}
@@ -116,20 +144,28 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
         <ScoreBoard
           gameStatus={gameStatus}
           characters={gameData.map((d) => ({
-            id: d.id ,
+            id: d.id,
             name: d.name || "Unknown",
             imageCode: d.imageCode,
             modeName: d.modeName,
           }))}
         />
       )}
+      {isStarted && isReady && gameStatus && optionsOpen && (
+        <SelectCharacter
+          close={closeOptionsMenu}
+          position={{ x: optionsMenuPos.x, y: optionsMenuPos.y }}
+          characters={gameStatus.characters.filter((char) => {
+            return !char.found;
+          })}
+        />
+      )}
       <img
         src={modeData?.modeImageUrl}
         alt={modeData?.description}
         className={styles.img}
-        onClick={() => {
-          //todo: pass handleClick
-        }}
+        onClick={handleClick}
+        draggable="false"
       />
     </>
   );

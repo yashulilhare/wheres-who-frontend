@@ -4,8 +4,12 @@
   padding: 0;
   border: none;
   outline: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: auto;
   cursor:
-    url("/src/assets/icons/crosshair-64.png"),
+    url("/src/assets/icons/crosshair-64.png") 32 32,
+    url("/src/assets/icons/crosshair-red.png") 16 16,
     url("/src/assets/icons/crosshair-focus.png"),
-    url("/src/assets/icons/crosshair-red.png"), auto;
+    auto;
 }

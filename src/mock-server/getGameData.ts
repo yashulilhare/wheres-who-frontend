@@ -53,4 +53,4 @@ const getGameData = async () => {
   return res;
 };
 
-export { getGameData };
+export { getGameData, mockData };

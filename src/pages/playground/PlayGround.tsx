@@ -18,10 +18,12 @@ const PlayGround = () => {
   }, [mode]);
 
   return (
-    <main className={styles.main}>
-      <SpaceBar borderBottom={true}/>
+    <main
+      className={styles.main}
+    >
+      <SpaceBar borderBottom={true} />
       <PlayMode mode={mode || "undrcity"} modeData={modeData || null} />
-      <SpaceBar borderTop={true}/>
+      <SpaceBar borderTop={true} />
     </main>
   );
 };

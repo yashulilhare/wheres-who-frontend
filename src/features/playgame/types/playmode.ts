@@ -9,6 +9,9 @@ interface CharacterInfo {
 
 interface CharacterStatus {
   id: string;
+  name: string;
+  modeName: string;
+  imageCode: number;
   found: boolean;
 }
 

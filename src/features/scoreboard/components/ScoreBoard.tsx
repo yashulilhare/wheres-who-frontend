@@ -82,7 +82,7 @@ const ScoreBoard = ({ characters, gameStatus }: ScoreBoardProps) => {
               name={char.name}
               modeName={char.modeName}
               imageCode={char.imageCode}
-              key={char.name}
+              key={char.id}
             />
           );
         })}

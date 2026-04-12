@@ -1,0 +1,63 @@
+.container {
+  position: fixed;
+  z-index: 99999;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  padding-top: 0;
+  border-radius: 8px;
+  max-width: 300px;
+  cursor: default;
+}
+
+.cancelButton {
+  position: relative;
+  top: 0;
+  left: 15px;
+  align-self: flex-end;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  font-size: 1.2rem;
+  padding: 5px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.container > ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.list {
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: gold;
+  border-radius: 8px;
+  padding: 6px;
+  transition: 0.2s transform ease-in-out;
+}
+
+.list:hover {
+  background-color: rgb(247, 220, 68);
+  transform: scale(1.02);
+}
+.list > img {
+  width: 50px;
+  height: 50px;
+}
+
+.list > p {
+  margin: 0;
+}
