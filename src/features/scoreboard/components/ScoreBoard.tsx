@@ -6,11 +6,12 @@ interface ImageCardProps {
   imageCode: number;
   name: string;
   modeName: string;
+  found: boolean;
 }
-const ImageCard = ({ name, imageCode, modeName }: ImageCardProps) => {
+const ImageCard = ({ name, imageCode, modeName, found }: ImageCardProps) => {
   return (
     <div className={styles.imgCard}>
-      <div className={styles.imgOverLayer}></div>
+      {found && <div className={styles.imgOverLayer}></div>}
       <img
         src={`/characters/${modeName}/${imageCode}.png`}
         alt={`Image for character ${name}`}
@@ -67,6 +68,7 @@ interface CharacterData {
   imageCode: number;
   name: string;
   modeName: string;
+  found: boolean;
 }
 interface ScoreBoardProps {
   characters: CharacterData[];
@@ -82,6 +84,7 @@ const ScoreBoard = ({ characters, gameStatus }: ScoreBoardProps) => {
               name={char.name}
               modeName={char.modeName}
               imageCode={char.imageCode}
+              found={char.found}
               key={char.id}
             />
           );

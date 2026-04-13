@@ -148,6 +148,7 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
             name: d.name || "Unknown",
             imageCode: d.imageCode,
             modeName: d.modeName,
+            found: d.found,
           }))}
         />
       )}
