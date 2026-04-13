@@ -5,41 +5,35 @@ import StartGame from "./StartGame";
 import LoadingFull from "@/components/containers/LoadingFull";
 import { SelectCharacter } from "./SelectCharacter";
 import useImageLoader from "../hooks/useImageLoader";
+import TimerContext from "../hooks/timerContext";
 
-import type { CharacterInfo, GameStatusData } from "../types/playmode";
+import type {
+  CharacterInfo,
+  GameStatusData,
+  SelectCharData,
+} from "@/features/playgame";
 // temporary imports
-import { getGameData } from "@/mock-server/getGameData";
-import ScoreBoard from "@/features/scoreboard/components/ScoreBoard";
-
+import {
+  getGameData,
+  validateSelect,
+  type CheckData,
+} from "@/mock-server/getGameData";
+import { ScoreBoard } from "@/features/scoreboard";
 interface PlayModeProps {
   modeData: Mode | null;
   mode: string;
 }
-
-/*
-interface Points {
-  x: number;
-  y: number;
-}
-const isMatch = (stored: Points, clicked: Points): boolean => {
-  console.log(stored);
-  console.log(clicked);
-  const diffX = Math.abs(stored.x - clicked.x);
-  const diffY = Math.abs(stored.y - clicked.y);
-  console.log(diffX, diffY);
-
-  if (diffX > 5 && diffY > 5) return false;
-  else return true;
-};
-*/
 
 // root component
 const PlayMode = ({ modeData }: PlayModeProps) => {
   const [isStarted, setIsStarted] = useState(false);
   const [gameData, setGameData] = useState<CharacterInfo[] | null>(null);
   const [gameStatus, setGameStatus] = useState<GameStatusData | null>(null);
-  const [optionsMenuPos, setOptionsMenuPos] = useState({ x: 0, y: 0 });
+  const [selectCharData, setSelectCharData] = useState<SelectCharData | null>(
+    null,
+  );
   const [optionsOpen, setOptionsOpen] = useState(false);
+  const [timer, setTimer] = useState(gameStatus?.resumeFrom || 0);
 
   useEffect(() => {
     const mockFetch = async () => {
@@ -72,6 +66,17 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isStarted) {
+      const key = setInterval(() => {
+        setTimer((prev) => prev + 1);
+      }, 1000);
+      return () => {
+        clearInterval(key);
+      };
+    }
+  }, [timer, isStarted]);
+
   const isReady = useImageLoader(
     gameData?.map((d) => {
       const imgSrc = `/characters/${d.modeName}/${d.imageCode}.png`;
@@ -90,21 +95,25 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
     const posX = e.clientX;
     const posY = e.clientY;
 
-    setOptionsMenuPos({ x: posX, y: posY });
-    setOptionsOpen(true);
-
-    /*
     const rect = e.currentTarget.getBoundingClientRect();
 
     const currentWidth = rect.width;
     const currentHeight = rect.height;
-    
+
     const clickX = e.clientX - rect.left;
     const clickY = e.clientY - rect.top;
-    
+
     const percentX = (clickX / currentWidth) * 100;
     const percentY = (clickY / currentHeight) * 100;
-    
+
+    setSelectCharData({
+      x: posX,
+      y: posY,
+      percentX: percentX,
+      percentY: percentY,
+    });
+    setOptionsOpen(true);
+    /*
     const userValue = prompt("select your result from 1 t  3");
 
     const assumed = mockData.find((item) => {
@@ -124,6 +133,39 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
     */
   };
 
+  const handleSelect = async (data: CheckData) => {
+    const result = await validateSelect(data);
+    switch (result.validationResult) {
+      case "no-character":
+        {
+          return;
+        }
+        break;
+      case "wrong":
+        {
+          setGameStatus((prev) => {
+            if (!prev) return null;
+            else
+              return {
+                ...prev,
+                resumeFrom: result.resumeFrom,
+                innocentKills: result.innocentKills,
+              };
+          });
+        }
+        break;
+      case "correct": {
+        if (gameStatus && result.characters) {
+          setGameStatus({
+            ...gameStatus,
+            characters: result.characters,
+            resumeFrom: result.resumeFrom,
+          });
+        }
+      }
+    }
+  };
+
   const closeOptionsMenu = () => {
     setOptionsOpen(false);
   };
@@ -141,26 +183,22 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
         />
       )}
       {isStarted && isReady && gameStatus && gameData && (
-        <ScoreBoard
-          gameStatus={gameStatus}
-          characters={gameData.map((d) => ({
-            id: d.id,
-            name: d.name || "Unknown",
-            imageCode: d.imageCode,
-            modeName: d.modeName,
-            found: d.found,
-          }))}
-        />
+        <TimerContext.Provider value={timer}>
+          <ScoreBoard gameStatus={{ ...gameStatus }} />
+        </TimerContext.Provider>
       )}
-      {isStarted && isReady && gameStatus && optionsOpen && (
+      {isStarted && isReady && gameStatus && optionsOpen && selectCharData && (
         <SelectCharacter
           close={closeOptionsMenu}
-          position={{ x: optionsMenuPos.x, y: optionsMenuPos.y }}
+          posData={selectCharData}
           characters={gameStatus.characters.filter((char) => {
             return !char.found;
           })}
+          handleSelect={handleSelect}
+          gameStatus={{ ...gameStatus }}
         />
       )}
+
       <img
         src={modeData?.modeImageUrl}
         alt={modeData?.description}

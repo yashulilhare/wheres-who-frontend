@@ -21,4 +21,11 @@ interface GameStatusData {
   innocentKills: number;
 }
 
-export type { CharacterInfo, GameStatusData };
+interface SelectCharData {
+  x: number;
+  y: number;
+  percentX: number;
+  percentY: number;
+}
+
+export type { CharacterInfo, GameStatusData, SelectCharData, CharacterStatus };

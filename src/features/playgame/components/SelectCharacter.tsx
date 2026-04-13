@@ -1,6 +1,9 @@
 import styles from "./SelectCharacter.module.css";
 import { useRef, useLayoutEffect } from "react";
 
+import type { SelectCharData, GameStatusData } from "../types/playmode";
+import type { CheckData } from "@/mock-server/getGameData";
+
 interface Character {
   id: string;
   name: string;
@@ -10,13 +13,17 @@ interface Character {
 interface SelectCharacterProps {
   characters: Character[];
   close: () => void;
-  position: { x: number; y: number };
+  posData: SelectCharData;
+  handleSelect: (data: CheckData) => Promise<void>;
+  gameStatus: GameStatusData;
 }
 
 const SelectCharacter = ({
   characters,
   close,
-  position,
+  posData,
+  handleSelect,
+  gameStatus,
 }: SelectCharacterProps) => {
   const optionsRef = useRef<HTMLDivElement>(null);
 
@@ -26,8 +33,8 @@ const SelectCharacter = ({
     const windowWith = window.innerWidth;
     const windowHeight = window.innerHeight;
 
-    let posX = position.x;
-    let posY = position.y;
+    let posX = posData.x;
+    let posY = posData.y;
 
     // manage horizontal  overflow
     if (optionMenuWidth && posX + optionMenuWidth > windowWith) {
@@ -46,8 +53,8 @@ const SelectCharacter = ({
       optionsRef.current.style.top = `${posY}px`;
       optionsRef.current.style.visibility = "visible";
     }
-  }, [position]);
-  
+  }, [posData]);
+
   return (
     <div className={styles.container} ref={optionsRef}>
       <button className={styles.cancelButton} onClick={close}>
@@ -57,7 +64,23 @@ const SelectCharacter = ({
         {characters.map((char) => {
           const imgSrc = `/characters/${char.modeName}/${char.imageCode}.png`;
           return (
-            <li className={styles.list} key={char.id}>
+            <li
+              className={styles.list}
+              key={char.id}
+              onClick={async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                await handleSelect({
+                  charId: char.id,
+                  charName: char.name,
+                  x: posData.percentX,
+                  y: posData.percentY,
+                  modeName: char.modeName,
+                  innocentKills: gameStatus.innocentKills,
+                  timer: gameStatus.resumeFrom,
+                });
+              }}
+            >
               <img src={imgSrc} alt={`Image for character ${char.name}`} />
               <p>{char.name}</p>
             </li>

@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import styles from "./ScoreBoard.module.css";
 import type { GameStatusData } from "@/features/playgame/types/playmode";
+import TimerContext from "@/features/playgame/hooks/timerContext";
 
 interface ImageCardProps {
   imageCode: number;
@@ -29,9 +30,9 @@ const InnocentKills = ({ innocentKills }: { innocentKills: number }) => {
   );
 };
 
-interface TimerProps {
-  resumeFrom: number;
-}
+// interface TimerProps {
+//   resumeFrom: number;
+// }
 const formatTime = (seconds: number): string => {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
@@ -43,18 +44,8 @@ const formatTime = (seconds: number): string => {
   return `${h}:${m}:${s}`;
 };
 
-const Timer = ({ resumeFrom }: TimerProps) => {
-  const [timer, setTimer] = useState(resumeFrom);
-  useEffect(() => {
-    const key = setInterval(() => {
-      setTimer((prev) => prev + 1);
-    }, 1000);
-
-    return () => {
-      clearInterval(key);
-    };
-  }, [timer]);
-
+const Timer = () => {
+  const timer = useContext<number>(TimerContext);
   return (
     <div className={styles.scoreContainer}>
       <p className={styles.cardTitle}>Score</p>
@@ -63,22 +54,21 @@ const Timer = ({ resumeFrom }: TimerProps) => {
   );
 };
 
-interface CharacterData {
-  id: string;
-  imageCode: number;
-  name: string;
-  modeName: string;
-  found: boolean;
-}
+// interface CharacterData {
+//   id: string;
+//   imageCode: number;
+//   name: string;
+//   modeName: string;
+//   found: boolean;
+// }
 interface ScoreBoardProps {
-  characters: CharacterData[];
   gameStatus: GameStatusData;
 }
-const ScoreBoard = ({ characters, gameStatus }: ScoreBoardProps) => {
+const ScoreBoard = ({ gameStatus }: ScoreBoardProps) => {
   return (
     <section className={styles.container}>
       <div className={styles.imageContainer}>
-        {characters.map((char) => {
+        {gameStatus.characters.map((char) => {
           return (
             <ImageCard
               name={char.name}
@@ -91,9 +81,9 @@ const ScoreBoard = ({ characters, gameStatus }: ScoreBoardProps) => {
         })}
       </div>
       <InnocentKills innocentKills={gameStatus.innocentKills} />
-      <Timer resumeFrom={gameStatus.resumeFrom} />
+      <Timer />
     </section>
   );
 };
 
-export default ScoreBoard;
+export { ScoreBoard };

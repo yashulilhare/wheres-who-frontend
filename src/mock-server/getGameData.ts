@@ -1,4 +1,4 @@
-import type { CharacterInfo } from "@/features/playgame";
+import type { CharacterStatus, CharacterInfo } from "@/features/playgame";
 
 const mockData = [
   {
@@ -53,4 +53,88 @@ const getGameData = async () => {
   return res;
 };
 
-export { getGameData, mockData };
+interface Points {
+  x: number;
+  y: number;
+}
+const isMatch = (stored: Points, clicked: Points): boolean => {
+  console.log(stored);
+  console.log(clicked);
+  const diffX = Math.abs(stored.x - clicked.x);
+  const diffY = Math.abs(stored.y - clicked.y);
+  console.log(diffX, diffY);
+
+  if (diffX > 5 && diffY > 5) return false;
+  else return true;
+};
+interface CheckData {
+  x: number;
+  y: number;
+  charId: string;
+  charName: string;
+  modeName: string;
+  innocentKills: number;
+  timer: number;
+}
+
+interface ReturnData {
+  validationResult: "correct" | "wrong" | "no-character";
+  characters?: CharacterStatus[];
+  innocentKills: number;
+  resumeFrom: number;
+}
+
+const validateSelect = async (data: CheckData): Promise<ReturnData> => {
+  const res = new Promise<ReturnData>((resolve) => {
+    setTimeout(() => {
+      const characterData = mockData.find((char) => char.id === data.charId);
+
+      if (!characterData) {
+        resolve({
+          validationResult: "no-character",
+          resumeFrom: data.timer,
+          innocentKills: data.innocentKills,
+        });
+        return;
+      }
+
+      const match = isMatch(
+        { x: characterData.xposition, y: characterData.yposition },
+        { x: data.x, y: data.y },
+      );
+
+      if (match) {
+        const charData = mockData.map((m) => {
+          if (m.id === data.charId) {
+            m.found = true;
+            return {
+              id: m.id,
+              name: m.name,
+              imageCode: m.imageCode,
+              modeId: m.modeId,
+              modeName: m.modeName,
+              found: true,
+            };
+          } else return { ...m };
+        });
+        resolve({
+          validationResult: "correct",
+          characters: charData,
+          resumeFrom: data.timer,
+          innocentKills: data.innocentKills,
+        });
+      } else {
+        resolve({
+          validationResult: "wrong",
+          innocentKills: data.innocentKills + 1,
+          resumeFrom: data.timer,
+        });
+      }
+    }, 2000);
+  });
+  return res;
+};
+
+export { getGameData, mockData, validateSelect };
+
+export type { CheckData };

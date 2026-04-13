@@ -3,4 +3,4 @@ export { SelectCharacter } from "./components/SelectCharacter";
 export { default as useImageLoader } from "./hooks/useImageLoader";
 
 // type exports
-export type { CharacterInfo } from "./types/playmode";
+export type { CharacterInfo , SelectCharData, GameStatusData, CharacterStatus} from "./types/playmode";
