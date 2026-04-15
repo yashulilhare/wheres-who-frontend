@@ -28,4 +28,49 @@ interface SelectCharData {
   percentY: number;
 }
 
-export type { CharacterInfo, GameStatusData, SelectCharData, CharacterStatus };
+interface GameCharacterData {
+  id: string;
+  name: string;
+  imageCode: number;
+  modeId: number;
+  found: boolean;
+}
+
+// starting game response data
+interface StartGameData {
+  token: string;
+  user: {
+    id: string;
+    username: string;
+    iat: string;
+    exp: string;
+  };
+  gameData: {
+    // id is gameID
+    id: string;
+    userId: string;
+    modeId: number;
+    modeName: string;
+    characterData: GameCharacterData[];
+    gameState: "CONTINUE" | "COMPLETED";
+    innocentKills: number;
+    lastTimerScore: number;
+    charactersFound: number;
+    createdAt: string;
+    updatedAt: string;
+  };
+}
+
+interface StartGameError {
+  message: string;
+}
+
+export type {
+  GameCharacterData,
+  CharacterInfo,
+  GameStatusData,
+  SelectCharData,
+  CharacterStatus,
+  StartGameData,
+  StartGameError,
+};

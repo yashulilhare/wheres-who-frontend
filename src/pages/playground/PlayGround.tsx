@@ -10,19 +10,18 @@ const PlayGround = () => {
   const { mode } = useParams();
 
   const modeData = useMemo(() => {
+    const removeColon = mode?.slice(1);
     const data = modeList.find((m) => {
-      const removeColon = mode?.slice(1);
       return m.pagePath === removeColon;
     });
     return data;
   }, [mode]);
+  const removeColon = mode?.slice(1);
 
   return (
-    <main
-      className={styles.main}
-    >
+    <main className={styles.main}>
       <SpaceBar borderBottom={true} />
-      <PlayMode mode={mode || "undrcity"} modeData={modeData || null} />
+      <PlayMode mode={removeColon || "undrcity"} modeData={modeData || null} />
       <SpaceBar borderTop={true} />
     </main>
   );

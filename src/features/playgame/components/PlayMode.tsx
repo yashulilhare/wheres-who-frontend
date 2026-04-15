@@ -12,29 +12,35 @@ import type {
   GameStatusData,
   SelectCharData,
 } from "@/features/playgame";
+
 // temporary imports
 import {
   getGameData,
   validateSelect,
   type CheckData,
 } from "@/mock-server/getGameData";
+
 import { ScoreBoard } from "@/features/scoreboard";
+import useGameDataLoader from "../hooks/useGameDataLoader";
 interface PlayModeProps {
   modeData: Mode | null;
   mode: string;
 }
 
 // root component
-const PlayMode = ({ modeData }: PlayModeProps) => {
+const PlayMode = ({ modeData, mode }: PlayModeProps) => {
   const [isStarted, setIsStarted] = useState(false);
-  const [gameData, setGameData] = useState<CharacterInfo[] | null>(null);
+  // const [gameData, setGameData] = useState<CharacterInfo[] | null>(null);
   const [gameStatus, setGameStatus] = useState<GameStatusData | null>(null);
   const [selectCharData, setSelectCharData] = useState<SelectCharData | null>(
     null,
   );
   const [optionsOpen, setOptionsOpen] = useState(false);
   const [timer, setTimer] = useState(gameStatus?.resumeFrom || 0);
+  const { gameDataServer, gameDataLoaded, startGameError } =
+    useGameDataLoader(mode);
 
+    /*
   useEffect(() => {
     const mockFetch = async () => {
       const data = await getGameData();
@@ -56,6 +62,7 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
     mockFetch();
   }, []);
 
+  */
   useEffect(() => {
     const handleScroll = () => {
       setOptionsOpen(false);
@@ -113,24 +120,6 @@ const PlayMode = ({ modeData }: PlayModeProps) => {
       percentY: percentY,
     });
     setOptionsOpen(true);
-    /*
-    const userValue = prompt("select your result from 1 t  3");
-
-    const assumed = mockData.find((item) => {
-      const num = Number.parseInt(userValue || "mm");
-
-      return item.imageCode === num;
-    });
-
-    if (assumed) {
-      console.log(assumed);
-      const res = isMatch(
-        { x: assumed.xposition, y: assumed.yposition },
-        { x: percentX, y: percentY },
-      );
-      alert(res);
-    }
-    */
   };
 
   const handleSelect = async (data: CheckData) => {
