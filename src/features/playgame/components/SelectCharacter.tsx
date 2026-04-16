@@ -1,21 +1,25 @@
 import styles from "./SelectCharacter.module.css";
 import { useRef, useLayoutEffect } from "react";
 
-import type { SelectCharData, GameStatusData } from "../types/playmode";
-import type { CheckData } from "@/mock-server/getGameData";
+import type {
+  SelectCharData,
+  GameCharacterData,
+  AttemptSentData,
+} from "../types/playmode";
+// import type { CheckData } from "@/mock-server/getGameData";
 
-interface Character {
-  id: string;
-  name: string;
-  modeName: string;
-  imageCode: number;
-}
 interface SelectCharacterProps {
-  characters: Character[];
+  characters: GameCharacterData[];
   close: () => void;
   posData: SelectCharData;
-  handleSelect: (data: CheckData) => Promise<void>;
-  gameStatus: GameStatusData;
+  handleSelect: (data: AttemptSentData) => Promise<void>;
+  gameData: {
+    gameId: string;
+    modeId: number;
+    modeName: string;
+    innocentKills: number;
+    timerScore: number;
+  };
 }
 
 const SelectCharacter = ({
@@ -23,7 +27,7 @@ const SelectCharacter = ({
   close,
   posData,
   handleSelect,
-  gameStatus,
+  gameData,
 }: SelectCharacterProps) => {
   const optionsRef = useRef<HTMLDivElement>(null);
 
@@ -62,7 +66,7 @@ const SelectCharacter = ({
       </button>
       <ul>
         {characters.map((char) => {
-          const imgSrc = `/characters/${char.modeName}/${char.imageCode}.png`;
+          const imgSrc = `/characters/${gameData.modeName}/${char.imageCode}.png`;
           return (
             <li
               className={styles.list}
@@ -70,14 +74,15 @@ const SelectCharacter = ({
               onClick={async (e) => {
                 e.preventDefault();
                 e.stopPropagation();
+
                 await handleSelect({
+                  gameId: gameData.gameId,
                   charId: char.id,
+                  modeId: gameData.modeId,
                   charName: char.name,
+                  timerScore: gameData.timerScore,
                   x: posData.percentX,
                   y: posData.percentY,
-                  modeName: char.modeName,
-                  innocentKills: gameStatus.innocentKills,
-                  timer: gameStatus.resumeFrom,
                 });
               }}
             >

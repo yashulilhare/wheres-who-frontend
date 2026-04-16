@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styles from "./ScoreBoard.module.css";
-import type { GameStatusData } from "@/features/playgame/types/playmode";
 import TimerContext from "@/features/playgame/hooks/timerContext";
+import type { GameData } from "@/features/playgame/types/playmode";
 
 interface ImageCardProps {
   imageCode: number;
@@ -54,25 +54,18 @@ const Timer = () => {
   );
 };
 
-// interface CharacterData {
-//   id: string;
-//   imageCode: number;
-//   name: string;
-//   modeName: string;
-//   found: boolean;
-// }
 interface ScoreBoardProps {
-  gameStatus: GameStatusData;
+  gameData: GameData;
 }
-const ScoreBoard = ({ gameStatus }: ScoreBoardProps) => {
+const ScoreBoard = ({ gameData }: ScoreBoardProps) => {
   return (
     <section className={styles.container}>
       <div className={styles.imageContainer}>
-        {gameStatus.characters.map((char) => {
+        {gameData.characterData.map((char) => {
           return (
             <ImageCard
               name={char.name}
-              modeName={char.modeName}
+              modeName={gameData.modeName}
               imageCode={char.imageCode}
               found={char.found}
               key={char.id}
@@ -80,7 +73,7 @@ const ScoreBoard = ({ gameStatus }: ScoreBoardProps) => {
           );
         })}
       </div>
-      <InnocentKills innocentKills={gameStatus.innocentKills} />
+      <InnocentKills innocentKills={gameData.innocentKills} />
       <Timer />
     </section>
   );

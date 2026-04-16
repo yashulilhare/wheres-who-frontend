@@ -1,26 +1,3 @@
-interface CharacterInfo {
-  id: string;
-  name?: string;
-  imageCode: number;
-  modeId: number;
-  modeName: string;
-  found: boolean;
-}
-
-interface CharacterStatus {
-  id: string;
-  name: string;
-  modeName: string;
-  imageCode: number;
-  found: boolean;
-}
-
-interface GameStatusData {
-  characters: CharacterStatus[];
-  resumeFrom: number;
-  innocentKills: number;
-}
-
 interface SelectCharData {
   x: number;
   y: number;
@@ -36,7 +13,22 @@ interface GameCharacterData {
   found: boolean;
 }
 
-// starting game response data
+interface GameData {
+  // id is gameID
+  id: string;
+  userId: string;
+  modeId: number;
+  modeName: string;
+  characterData: GameCharacterData[];
+  gameState: "CONTINUE" | "COMPLETED";
+  innocentKills: number;
+  lastTimerScore: number;
+  charactersFound: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// starting-game response data
 interface StartGameData {
   token: string;
   user: {
@@ -45,32 +37,54 @@ interface StartGameData {
     iat: string;
     exp: string;
   };
-  gameData: {
-    // id is gameID
-    id: string;
-    userId: string;
-    modeId: number;
-    modeName: string;
-    characterData: GameCharacterData[];
-    gameState: "CONTINUE" | "COMPLETED";
-    innocentKills: number;
-    lastTimerScore: number;
-    charactersFound: number;
-    createdAt: string;
-    updatedAt: string;
-  };
+  gameData: GameData;
 }
 
 interface StartGameError {
   message: string;
 }
+// attempt response data types
+
+interface AttemptSentData {
+  gameId: string;
+  charId: string;
+  modeId: number;
+  charName: string;
+  timerScore: number;
+  x: number;
+  y: number;
+}
+
+interface AttemptFailResponse {
+  id: string;
+  modeId: number;
+  message: string;
+  attemptResult: "FAILED";
+  innocentKills: number;
+  lastTimerScore: number;
+}
+
+interface AttemptSuccessResponse {
+  id: string;
+  modeId: number;
+  lastTimerScore: number;
+  message: string;
+  attemptResult: "SUCCESS";
+  characters: GameCharacterData[];
+}
+
+type AttemptResponse = AttemptFailResponse | AttemptSuccessResponse;
+interface ApiSentError {
+  message: string;
+}
 
 export type {
   GameCharacterData,
-  CharacterInfo,
-  GameStatusData,
   SelectCharData,
-  CharacterStatus,
   StartGameData,
   StartGameError,
+  GameData,
+  AttemptSentData,
+  AttemptResponse,
+  ApiSentError,
 };

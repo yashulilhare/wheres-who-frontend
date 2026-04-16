@@ -135,6 +135,7 @@ const validateSelect = async (data: CheckData): Promise<ReturnData> => {
   return res;
 };
 
+//todo: remove validateSelect
 export { getGameData, mockData, validateSelect };
 
 export type { CheckData };

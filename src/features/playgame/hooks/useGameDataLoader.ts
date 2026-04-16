@@ -1,16 +1,23 @@
 import { api } from "@/lib/api";
 import { useEffect, useState } from "react";
 
-import type { StartGameData, StartGameError } from "../types/playmode";
+import type {
+  GameData,
+  StartGameData,
+  StartGameError,
+} from "../types/playmode";
 import { useNavigate } from "react-router";
 
 const useGameDataLoader = (mode: string) => {
   const navigate = useNavigate();
   const [gameDataLoaded, setGameDataLoaded] = useState(false);
-  const [gameData, setGameData] = useState<StartGameData | null>(null);
+  const [startGameData, setStartGameData] = useState<StartGameData | null>(
+    null,
+  );
   const [startGameError, setStartGameError] = useState<StartGameError | null>(
     null,
   );
+  const [gameData, setGameData] = useState<GameData | null>(null);
 
   useEffect(() => {
     const baseUrl = import.meta.env.VITE_API_BASE_URL;
@@ -38,7 +45,8 @@ const useGameDataLoader = (mode: string) => {
 
         if (res.ok && res.status <= 400) {
           const successData = (await res.json()) as StartGameData;
-          setGameData(successData);
+          setStartGameData(successData);
+          setGameData(successData.gameData);
           setGameDataLoaded(true);
           // todo: console
           console.log(successData);
@@ -59,7 +67,13 @@ const useGameDataLoader = (mode: string) => {
     };
   }, [mode]);
 
-  return { gameData, gameDataLoaded, startGameError };
+  return {
+    startGameData,
+    gameDataLoaded,
+    startGameError,
+    gameData,
+    setGameData,
+  };
 };
 
 export default useGameDataLoader;

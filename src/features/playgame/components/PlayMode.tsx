@@ -7,21 +7,13 @@ import { SelectCharacter } from "./SelectCharacter";
 import useImageLoader from "../hooks/useImageLoader";
 import TimerContext from "../hooks/timerContext";
 
-import type {
-  CharacterInfo,
-  GameStatusData,
-  SelectCharData,
-} from "@/features/playgame";
-
-// temporary imports
-import {
-  getGameData,
-  validateSelect,
-  type CheckData,
-} from "@/mock-server/getGameData";
+import type { SelectCharData } from "@/features/playgame";
 
 import { ScoreBoard } from "@/features/scoreboard";
 import useGameDataLoader from "../hooks/useGameDataLoader";
+import type { AttemptResponse, AttemptSentData } from "../types/playmode";
+import handleAttempt from "../api/handleSelect";
+import { useNavigate } from "react-router";
 interface PlayModeProps {
   modeData: Mode | null;
   mode: string;
@@ -30,39 +22,15 @@ interface PlayModeProps {
 // root component
 const PlayMode = ({ modeData, mode }: PlayModeProps) => {
   const [isStarted, setIsStarted] = useState(false);
-  // const [gameData, setGameData] = useState<CharacterInfo[] | null>(null);
-  const [gameStatus, setGameStatus] = useState<GameStatusData | null>(null);
   const [selectCharData, setSelectCharData] = useState<SelectCharData | null>(
     null,
   );
   const [optionsOpen, setOptionsOpen] = useState(false);
-  const [timer, setTimer] = useState(gameStatus?.resumeFrom || 0);
-  const { gameDataServer, gameDataLoaded, startGameError } =
-    useGameDataLoader(mode);
+  const { gameData, gameDataLoaded, setGameData } = useGameDataLoader(mode);
+  const [timer, setTimer] = useState(gameData?.lastTimerScore || 0);
 
-    /*
-  useEffect(() => {
-    const mockFetch = async () => {
-      const data = await getGameData();
-      setGameData(data);
-      setGameStatus({
-        characters: data.map((d) => {
-          return {
-            id: d.id,
-            name: d.name || "Unknown",
-            modeName: d.modeName,
-            imageCode: d.imageCode,
-            found: d.found,
-          };
-        }),
-        innocentKills: 0,
-        resumeFrom: 0,
-      });
-    };
-    mockFetch();
-  }, []);
+  const navigate = useNavigate();
 
-  */
   useEffect(() => {
     const handleScroll = () => {
       setOptionsOpen(false);
@@ -85,12 +53,11 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
   }, [timer, isStarted]);
 
   const isReady = useImageLoader(
-    gameData?.map((d) => {
-      const imgSrc = `/characters/${d.modeName}/${d.imageCode}.png`;
+    gameData?.characterData.map((d) => {
+      const imgSrc = `/characters/${gameData.modeName}/${d.imageCode}.png`;
       return imgSrc;
     }) || null,
   );
-
   const startGame = () => {
     setIsStarted(true);
   };
@@ -122,69 +89,80 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
     setOptionsOpen(true);
   };
 
-  const handleSelect = async (data: CheckData) => {
-    const result = await validateSelect(data);
-    switch (result.validationResult) {
-      case "no-character":
-        {
-          return;
-        }
-        break;
-      case "wrong":
-        {
-          setGameStatus((prev) => {
-            if (!prev) return null;
-            else
-              return {
-                ...prev,
-                resumeFrom: result.resumeFrom,
-                innocentKills: result.innocentKills,
-              };
-          });
-        }
-        break;
-      case "correct": {
-        if (gameStatus && result.characters) {
-          setGameStatus({
-            ...gameStatus,
-            characters: result.characters,
-            resumeFrom: result.resumeFrom,
-          });
-        }
+  const handleSelect = async (data: AttemptSentData) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/auth/login");
+      return;
+    }
+    const bearerToken = `Bearer ${token}`;
+    try {
+      const res = await handleAttempt(bearerToken, data);
+      if (!res.ok || res.status >= 400) {
+        const resData = await res.json();
+        console.error(resData);
+        return;
       }
+
+      const resData = (await res.json()) as AttemptResponse;
+      if (resData.attemptResult === "FAILED" && gameData) {
+        setGameData({
+          ...gameData,
+          innocentKills: resData.innocentKills,
+        });
+        return;
+      }
+      if (resData.attemptResult === "SUCCESS" && gameData) {
+        setGameData({
+          ...gameData,
+          characterData: resData.characters,
+        });
+      }
+    } catch (err) {
+      console.error(err);
     }
   };
 
   const closeOptionsMenu = () => {
     setOptionsOpen(false);
   };
+
   return (
     <>
       {!isReady && !isStarted && <LoadingFull />}
-      {!isStarted && gameData && isReady && (
+
+      {!isStarted && gameDataLoaded && isReady && gameData && (
         <StartGame
           startGame={startGame}
-          characters={gameData.map((d) => ({
+          characters={gameData.characterData.map((d) => ({
             name: d.name || "Unknown",
             imageCode: d.imageCode,
-            modeName: d.modeName,
+            modeName: gameData.modeName,
           }))}
         />
       )}
-      {isStarted && isReady && gameStatus && gameData && (
+
+      {isStarted && isReady && gameData && (
         <TimerContext.Provider value={timer}>
-          <ScoreBoard gameStatus={{ ...gameStatus }} />
+          <ScoreBoard gameData={gameData} />
         </TimerContext.Provider>
       )}
-      {isStarted && isReady && gameStatus && optionsOpen && selectCharData && (
+
+      {isStarted && isReady && gameData && optionsOpen && selectCharData && (
         <SelectCharacter
           close={closeOptionsMenu}
           posData={selectCharData}
-          characters={gameStatus.characters.filter((char) => {
+          characters={gameData.characterData.filter((char) => {
             return !char.found;
           })}
+          gameData={{
+            gameId: gameData.id,
+            modeId: gameData.modeId,
+            timerScore: timer,
+            innocentKills: gameData.innocentKills,
+            modeName: gameData.modeName,
+          }}
           handleSelect={handleSelect}
-          gameStatus={{ ...gameStatus }}
         />
       )}
 
