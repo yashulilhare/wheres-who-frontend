@@ -9,6 +9,7 @@ import MainLayout from "@/layouts/MainLayout";
 import HomePage from "@/pages/homepage/HomePage";
 import PlayGround from "@/pages/playground/PlayGround";
 import AuthPage from "@/pages/authpage/AuthPage";
+import GameOver from "./pages/gameover/GameOver";
 
 const routes: RouteObject[] = [
   {
@@ -24,6 +25,7 @@ const routes: RouteObject[] = [
         element: <PlayGround />,
       },
       { path: "auth", element: <AuthPage /> },
+      { path: "gameover", element: <GameOver /> },
     ],
   },
 ];

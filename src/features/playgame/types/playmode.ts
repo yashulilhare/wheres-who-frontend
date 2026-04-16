@@ -71,6 +71,8 @@ interface AttemptSuccessResponse {
   message: string;
   attemptResult: "SUCCESS";
   characters: GameCharacterData[];
+  gameState: "CONTINUE" | "COMPLETED";
+  username:string;
 }
 
 type AttemptResponse = AttemptFailResponse | AttemptSuccessResponse;

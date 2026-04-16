@@ -113,6 +113,9 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
         return;
       }
       if (resData.attemptResult === "SUCCESS" && gameData) {
+        if(resData.gameState=== 'COMPLETED'){
+          navigate(`/gameover?timerScore=${resData.lastTimerScore}&incKills=${gameData.innocentKills}&modeName=${gameData.modeName}&username=${resData.username}`)
+        }
         setGameData({
           ...gameData,
           characterData: resData.characters,
