@@ -42,7 +42,15 @@ const GameOverCard = ({
         </li>
       </ul>
       <p className={styles.message}>{message}</p>
-      <Link to={`/playground/:${modeName}`} className={styles.navButton}>
+      <Link
+        to={`/playground/:${modeName}`}
+        className={styles.navButton}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          window.location.reload();
+        }}
+      >
         Play Again
       </Link>
     </div>
