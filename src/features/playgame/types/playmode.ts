@@ -5,6 +5,11 @@ interface SelectCharData {
   percentY: number;
 }
 
+interface GameRecord {
+  user: { username: string };
+  innocentKills: number;
+  duration: number;
+}
 interface GameCharacterData {
   id: string;
   name: string;
@@ -72,7 +77,8 @@ interface AttemptSuccessResponse {
   attemptResult: "SUCCESS";
   characters: GameCharacterData[];
   gameState: "CONTINUE" | "COMPLETED";
-  username:string;
+  username: string;
+  topFive: GameRecord[];
 }
 
 type AttemptResponse = AttemptFailResponse | AttemptSuccessResponse;
@@ -88,5 +94,7 @@ export type {
   GameData,
   AttemptSentData,
   AttemptResponse,
+  AttemptSuccessResponse,
   ApiSentError,
+  GameRecord,
 };

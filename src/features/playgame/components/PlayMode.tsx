@@ -11,9 +11,14 @@ import type { SelectCharData } from "@/features/playgame";
 
 import { ScoreBoard } from "@/features/scoreboard";
 import useGameDataLoader from "../hooks/useGameDataLoader";
-import type { AttemptResponse, AttemptSentData } from "../types/playmode";
+import type {
+  AttemptResponse,
+  AttemptSentData,
+  AttemptSuccessResponse,
+} from "../types/playmode";
 import handleAttempt from "../api/handleSelect";
 import { useNavigate } from "react-router";
+import GameOver from "@/pages/gameover/GameOver";
 interface PlayModeProps {
   modeData: Mode | null;
   mode: string;
@@ -22,6 +27,9 @@ interface PlayModeProps {
 // root component
 const PlayMode = ({ modeData, mode }: PlayModeProps) => {
   const [isStarted, setIsStarted] = useState(false);
+  const [gameCompleted, setGameCompleted] = useState(false);
+  const [gameCompleteData, setGameCompleteData] =
+    useState<AttemptSuccessResponse | null>(null);
   const [selectCharData, setSelectCharData] = useState<SelectCharData | null>(
     null,
   );
@@ -113,8 +121,10 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
         return;
       }
       if (resData.attemptResult === "SUCCESS" && gameData) {
-        if(resData.gameState=== 'COMPLETED'){
-          navigate(`/gameover?timerScore=${resData.lastTimerScore}&incKills=${gameData.innocentKills}&modeName=${gameData.modeName}&username=${resData.username}`)
+        if (resData.gameState === "COMPLETED") {
+          setGameCompleted(true);
+          setGameCompleteData(resData);
+          return;
         }
         setGameData({
           ...gameData,
@@ -132,50 +142,69 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
 
   return (
     <>
-      {!isReady && !isStarted && <LoadingFull />}
+      {!isReady && !isStarted && !gameCompleted && <LoadingFull />}
 
-      {!isStarted && gameDataLoaded && isReady && gameData && (
-        <StartGame
-          startGame={startGame}
-          characters={gameData.characterData.map((d) => ({
-            name: d.name || "Unknown",
-            imageCode: d.imageCode,
-            modeName: gameData.modeName,
-          }))}
-        />
-      )}
+      {!isStarted &&
+        gameDataLoaded &&
+        isReady &&
+        gameData &&
+        !gameCompleted && (
+          <StartGame
+            startGame={startGame}
+            characters={gameData.characterData.map((d) => ({
+              name: d.name || "Unknown",
+              imageCode: d.imageCode,
+              modeName: gameData.modeName,
+            }))}
+          />
+        )}
 
-      {isStarted && isReady && gameData && (
+      {isStarted && isReady && gameData && !gameCompleted && (
         <TimerContext.Provider value={timer}>
           <ScoreBoard gameData={gameData} />
         </TimerContext.Provider>
       )}
 
-      {isStarted && isReady && gameData && optionsOpen && selectCharData && (
-        <SelectCharacter
-          close={closeOptionsMenu}
-          posData={selectCharData}
-          characters={gameData.characterData.filter((char) => {
-            return !char.found;
-          })}
-          gameData={{
-            gameId: gameData.id,
-            modeId: gameData.modeId,
-            timerScore: timer,
-            innocentKills: gameData.innocentKills,
-            modeName: gameData.modeName,
-          }}
-          handleSelect={handleSelect}
+      {isStarted &&
+        isReady &&
+        gameData &&
+        optionsOpen &&
+        selectCharData &&
+        !gameCompleted && (
+          <SelectCharacter
+            close={closeOptionsMenu}
+            posData={selectCharData}
+            characters={gameData.characterData.filter((char) => {
+              return !char.found;
+            })}
+            gameData={{
+              gameId: gameData.id,
+              modeId: gameData.modeId,
+              timerScore: timer,
+              innocentKills: gameData.innocentKills,
+              modeName: gameData.modeName,
+            }}
+            handleSelect={handleSelect}
+          />
+        )}
+
+      {!gameCompleted && (
+        <img
+          src={modeData?.modeImageUrl}
+          alt={modeData?.description}
+          className={styles.img}
+          onClick={handleClick}
+          draggable="false"
         />
       )}
-
-      <img
-        src={modeData?.modeImageUrl}
-        alt={modeData?.description}
-        className={styles.img}
-        onClick={handleClick}
-        draggable="false"
-      />
+      
+      {gameCompleted && gameCompleteData && gameData && (
+        <GameOver
+          innocentKills={gameData.innocentKills}
+          modeName={gameData.modeName}
+          data={gameCompleteData}
+        />
+      )}
     </>
   );
 };
