@@ -1,5 +1,4 @@
 import styles from "./GameOver.module.css";
-import bgStyles from "@/styles/desert-background.module.css";
 import LeaderboardCard from "./LeaderboardCard";
 import GameOverCard from "./GameOverCard";
 import type { AttemptSuccessResponse } from "@/features/playgame/types/playmode";
@@ -12,14 +11,21 @@ interface GameOverProps {
 
 const GameOver = (props: GameOverProps) => {
   return (
-    <div className={`${styles.main} ${bgStyles.main}`}>
-      <GameOverCard
-        timerScore={props.data.lastTimerScore}
-        innocentKills={props.innocentKills}
-        username={props.data.username}
-        modeName={props.modeName}
-      />
-      <LeaderboardCard topFive={props.data.topFive} modeName={props.modeName} />
+    <div className={`${styles.main}`}>
+      <h1 className={styles.logoHeading}>Where's Who?</h1>
+
+      <div className={styles.container}>
+        <GameOverCard
+          timerScore={props.data.lastTimerScore}
+          innocentKills={props.innocentKills}
+          username={props.data.username}
+          modeName={props.modeName}
+        />
+        <LeaderboardCard
+          topFive={props.data.topFive}
+          modeName={props.modeName}
+        />
+      </div>
     </div>
   );
 };

@@ -6,6 +6,7 @@ interface SelectCharData {
 }
 
 interface GameRecord {
+  id: string;
   user: { username: string };
   innocentKills: number;
   duration: number;

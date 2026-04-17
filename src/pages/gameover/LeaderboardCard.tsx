@@ -1,16 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./GameOver.module.css";
 import type { GameRecord } from "@/features/playgame/types/playmode";
-
-const getDuration = (seconds: number) => {
-  if (seconds <= 59) {
-    return `${seconds} seconds`;
-  } else if (seconds <= seconds * 60 - 1)
-    return `${Math.round(seconds / 60)} minutes`;
-  else {
-    return `${Math.round(seconds / 60 / 60)} hour`;
-  }
-};
+import getDuration from "@/utils/getDuration";
 
 const LeaderboardCard = ({
   topFive,
@@ -19,34 +10,41 @@ const LeaderboardCard = ({
   topFive: GameRecord[];
   modeName: string;
 }) => {
+  if (topFive.length === 0) {
+    return null;
+  }
   return (
-    <div className={styles.leaderbaordCard}>
+    <div className={styles.card}>
       <div>
-        <h2>Leaderboard</h2>
-        <p>Top Score for {modeName}</p>
+        <h2 className={styles.cardHeading}>Leaderboard</h2>
+        <p className={styles.cardInfo}>Top Score for {modeName}</p>
       </div>
-      <section className={styles.ranks}>
-        <table>
+      <table className={styles.table}>
+        <thead>
           <tr>
             <th>Rank</th>
             <th>Username</th>
             <th>Duration</th>
             <th>Innocent Kills</th>
           </tr>
+        </thead>
+        <tbody>
           {topFive.map((record, index) => {
             const duration = getDuration(record.duration);
             return (
-              <tr>
-                <td>{index + 1}</td>
+              <tr key={record.id}>
+                <td className={styles.rankIndex}>{index + 1}</td>
                 <td>{record.user.username}</td>
                 <td>{duration}</td>
                 <td>{record.innocentKills}</td>
               </tr>
             );
           })}
-        </table>
-      </section>
-      <Link to={"/"}>Select Mode</Link>
+        </tbody>
+      </table>
+      <Link to={"/"} className={styles.navButton}>
+        Select Mode
+      </Link>
     </div>
   );
 };

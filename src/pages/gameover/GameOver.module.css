@@ -1,0 +1,89 @@
+.main {
+  flex: 1;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  /* justify-content: center; */
+}
+
+.logoHeading {
+  text-align: center;
+}
+.container {
+  display: flex;
+  max-width: max-content;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 100px;
+}
+.card {
+  flex: 1;
+  background-color: orange;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 400px;
+  min-height: 400px;
+}
+
+.cardHeading,
+.cardInfo {
+  margin: 0;
+  text-align: center;
+  padding: 0;
+}
+.cardInfo {
+  margin-bottom: 20px;
+}
+
+.gameInfo {
+  list-style-type: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.gameInfo > li {
+  display: flex;
+  gap: 10px;
+  padding: 7px;
+}
+.gameData {
+  flex: 2;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: green;
+}
+
+.dataValue {
+  flex: 3;
+}
+.card > a {
+  text-align: center;
+  background-color: red;
+  padding: 10px;
+  border-radius: 8px;
+}
+.card > a,
+.card > a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.table {
+  justify-self: center;
+  margin: 20px;
+  padding: 10px;
+  border-collapse: collapse;
+}
+
+.table td,
+.table th {
+  text-align: center;
+  min-width: 10px;
+  padding: 10px;
+}
