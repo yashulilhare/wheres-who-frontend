@@ -17,7 +17,7 @@ class LayoutButtonClass implements LayoutButton {
 
 const Button: ButtonClass = LayoutButtonClass;
 
-const logoButton = new Button(1, "Where's Who?", "top-left", "/homepage");
+const logoButton = new Button(1, "Where's Who?", "top-left", "/");
 const leaderboardButton = new Button(
   2,
   "Leaderboard",
@@ -25,7 +25,7 @@ const leaderboardButton = new Button(
   "/leaderboard",
 );
 const creditButton = new Button(4, "Image Credits", "bottom-right", "/credits");
-const homepageButton = new Button(2, "Homepage", "top-right", "/homepage");
+const homepageButton = new Button(2, "Homepage", "top-right", "/");
 const githubButton = new Button(3, "GitHub", "bottom-left", "www.github.com");
 
 // this is going to be an array

@@ -9,11 +9,13 @@ import MainLayout from "@/layouts/MainLayout";
 import HomePage from "@/pages/homepage/HomePage";
 import PlayGround from "@/pages/playground/PlayGround";
 import AuthPage from "@/pages/authpage/AuthPage";
+import Leaderboard from "@/pages/leaderboard/Leaderboard";
 
 const routes: RouteObject[] = [
   {
     path: "/",
     element: <MainLayout buttons={homepageButtons} />,
+    
     children: [
       {
         element: <HomePage />,
@@ -24,6 +26,7 @@ const routes: RouteObject[] = [
         element: <PlayGround />,
       },
       { path: "auth", element: <AuthPage /> },
+      { path: "leaderboard", element: <Leaderboard /> },
     ],
   },
 ];
