@@ -5,6 +5,15 @@ interface SelectCharData {
   percentY: number;
 }
 
+interface CheckData {
+  x: number;
+  y: number;
+  charId: string;
+  charName: string;
+  modeName: string;
+  innocentKills: number;
+  timer: number;
+}
 interface GameRecord {
   id: string;
   user: { username: string };
@@ -98,4 +107,5 @@ export type {
   AttemptSuccessResponse,
   ApiSentError,
   GameRecord,
+  CheckData,
 };
