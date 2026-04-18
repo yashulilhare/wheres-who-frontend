@@ -19,11 +19,9 @@ interface ModeLeaderboardData {
   id: number;
   name: "undrcity" | "universe113" | "pokeverse";
   records: GameRecord[];
+  userRank: UserTopRank | null;
 }
 
-type LeaderboardResponse = {
-  leaderboard: ModeLeaderboardData[];
-  userRanks: UserTopRank[];
-};
+type LeaderboardResponse = ModeLeaderboardData[];
 
 export type { ModeLeaderboardData, UserTopRank, LeaderboardResponse };

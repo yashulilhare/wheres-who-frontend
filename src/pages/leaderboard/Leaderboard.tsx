@@ -10,7 +10,6 @@ import ModeLeaderboard from "./ModeLeaderboard";
 import type { LeaderboardResponse } from "@/types/pages-types";
 
 const Leaderboard = () => {
-  const [loading, setIsLoading] = useState(false);
   const [data, setData] = useState<LeaderboardResponse | null>(null);
   const navigate = useNavigate();
 
@@ -40,7 +39,6 @@ const Leaderboard = () => {
         }
         const data = (await res.json()) as LeaderboardResponse;
         setData(data);
-        setIsLoading(false);
         console.log(data);
       } catch (err) {
         console.error(err);
@@ -52,18 +50,23 @@ const Leaderboard = () => {
       controller.abort();
     };
   }, []);
+
+  const user = localStorage.getItem("user");
+  const userObj = user ? JSON.parse(user) : null;
   return (
     <main className={`${desertBG.main} ${styles.main}`}>
-      <h1>Leaderboard</h1>
+      <div className={styles.headingSection}>
+        <h1 className={styles.mainHeading}>Game Leaderboard</h1>
+        {userObj && userObj.username && <h2>Hello, {userObj.username}</h2>}
+      </div>
       {data && (
-        <div>
-          {data.leaderboard.map((modeRank, index) => {
+        <div className={styles.cardContainer}>
+          {data.map((modeRank) => {
             return (
               <ModeLeaderboard
                 key={modeRank.id}
-                loading={loading}
                 leaderboard={modeRank}
-                topRank={data.userRanks[index]}
+                topRank={modeRank.userRank}
               />
             );
           })}
