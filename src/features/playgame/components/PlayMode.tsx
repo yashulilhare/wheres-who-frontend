@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import useImageLoader from "../hooks/useImageLoader";
 import TimerContext from "../hooks/timerContext";
 import useGameDataLoader from "../hooks/useGameDataLoader";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 import type { SelectCharData } from "@/features/playgame";
 
@@ -36,6 +36,7 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
     null,
   );
   const [optionsOpen, setOptionsOpen] = useState(false);
+  const soundToggle = useOutletContext<boolean>();
 
   const { gameData, gameDataLoaded, setGameData, restartGame } =
     useGameDataLoader(mode);
@@ -103,12 +104,14 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
   };
 
   const handleSelect = async (data: AttemptSentData) => {
-    const audio = new Audio("/sounds/gunshot.mp3");
-    audio.volume = 0.2;
-    audio.play();
+    if (soundToggle) {
+      const audio = new Audio("/sounds/gunshot.mp3");
+      audio.volume = 0.5;
+      audio.play();
+    }
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/auth/login");
+      navigate("/auth");
       return;
     }
     const bearerToken = `Bearer ${token}`;
