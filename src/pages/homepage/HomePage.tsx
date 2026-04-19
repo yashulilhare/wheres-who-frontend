@@ -2,10 +2,12 @@
 
 import backgroundStyles from "@/styles/desert-background.module.css";
 import styles from "./HomePage.module.css";
+import { Link } from "react-router-dom";
 
 import ModeCardContainer from "@/components/containers/ModeCardContainer";
 
 const HomePage = () => {
+  const token = localStorage.getItem("token");
   return (
     <main className={`${backgroundStyles.main} ${styles.main}`}>
       <h1 className={styles.logoHeading}>Where's Who?</h1>
@@ -17,9 +19,15 @@ const HomePage = () => {
         are counted. <br />
         Select the universe to start your duty.
       </p>
-
+      {!token && (
+        <p>
+          Wait! looks like you are not logged in.{" "}
+          <Link to={"/auth"}>Click here to Register/Login</Link>
+        </p>
+      )}
       <ModeCardContainer />
     </main>
   );
 };
+
 export default HomePage;

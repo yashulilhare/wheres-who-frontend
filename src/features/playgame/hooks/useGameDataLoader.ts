@@ -18,6 +18,11 @@ const useGameDataLoader = (mode: string) => {
     null,
   );
   const [gameData, setGameData] = useState<GameData | null>(null);
+  const [restart, setRestart] = useState(0);
+
+  const restartGame = () => {
+    setRestart(restart + 1);
+  };
 
   useEffect(() => {
     const baseUrl = import.meta.env.VITE_API_BASE_URL;
@@ -63,7 +68,7 @@ const useGameDataLoader = (mode: string) => {
     return () => {
       controller.abort();
     };
-  }, [mode]);
+  }, [mode, restart]);
 
   return {
     startGameData,
@@ -71,6 +76,7 @@ const useGameDataLoader = (mode: string) => {
     startGameError,
     gameData,
     setGameData,
+    restartGame,
   };
 };
 

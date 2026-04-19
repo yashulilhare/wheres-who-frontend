@@ -36,7 +36,9 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
     null,
   );
   const [optionsOpen, setOptionsOpen] = useState(false);
-  const { gameData, gameDataLoaded, setGameData } = useGameDataLoader(mode);
+
+  const { gameData, gameDataLoaded, setGameData, restartGame } =
+    useGameDataLoader(mode);
   const [timer, setTimer] = useState(gameData?.lastTimerScore || 0);
 
   const navigate = useNavigate();
@@ -70,6 +72,7 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
   );
   const startGame = () => {
     setIsStarted(true);
+    setTimer(0);
   };
 
   const handleClick = (e: React.MouseEvent<HTMLImageElement>) => {
@@ -100,7 +103,8 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
   };
 
   const handleSelect = async (data: AttemptSentData) => {
-    const audio = new Audio("/src/assets/sounds/gunshot.mp3");
+    const audio = new Audio("/sounds/gunshot.mp3");
+    audio.volume = 0.2;
     audio.play();
     const token = localStorage.getItem("token");
     if (!token) {
@@ -144,6 +148,12 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
     setOptionsOpen(false);
   };
 
+  const handleRestart = () => {
+    setIsStarted(false);
+    setGameCompleted(false);
+    setGameCompleteData(null);
+    restartGame();
+  };
   return (
     <>
       {!isReady && !isStarted && !gameCompleted && <LoadingFull />}
@@ -204,6 +214,7 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
 
       {gameCompleted && gameCompleteData && gameData && (
         <GameOver
+          restartGame={handleRestart}
           innocentKills={gameData.innocentKills}
           modeName={gameData.modeName}
           data={gameCompleteData}

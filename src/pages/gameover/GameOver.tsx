@@ -7,6 +7,7 @@ interface GameOverProps {
   innocentKills: number;
   modeName: string;
   data: AttemptSuccessResponse;
+  restartGame: () => void;
 }
 
 const GameOver = (props: GameOverProps) => {
@@ -20,6 +21,7 @@ const GameOver = (props: GameOverProps) => {
           innocentKills={props.innocentKills}
           username={props.data.username}
           modeName={props.modeName}
+          restartGame={props.restartGame}
         />
         <LeaderboardCard
           topFive={props.data.topFive}

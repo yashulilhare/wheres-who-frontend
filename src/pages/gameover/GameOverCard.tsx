@@ -7,11 +7,13 @@ const GameOverCard = ({
   innocentKills,
   username,
   modeName,
+  restartGame,
 }: {
   timerScore: number;
   innocentKills: number;
   username: string;
   modeName: string;
+  restartGame: () => void;
 }) => {
   const message =
     timerScore < 15
@@ -48,7 +50,7 @@ const GameOverCard = ({
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          window.location.reload();
+          restartGame();
         }}
       >
         Play Again

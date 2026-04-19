@@ -18,28 +18,40 @@ const ModeLeaderboard = ({ leaderboard, topRank }: ModeLeaderboardProps) => {
         </Link>
       </div>
       <div className={styles.topRanksContainer}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Username</th>
-              <th>Duration</th>
-              <th>InnocentKills</th>
-            </tr>
-          </thead>
-          <tbody>
-            {leaderboard.records.map((record, index) => {
-              return (
-                <tr key={record.id}>
-                  <td>{index + 1}</td>
-                  <td>{record.user.username}</td>
-                  <td>{getDuration(record.duration)}</td>
-                  <td>{record.innocentKills}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        {leaderboard.records.length === 0 && (
+          <h3
+            style={{
+              textAlign: "center",
+            }}
+          >
+            ---- No player had played this mode yet ----
+          </h3>
+        )}
+        {leaderboard.records.length > 0 && (
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Duration</th>
+                <th>InnocentKills</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leaderboard.records.map((record, index) => {
+                return (
+                  <tr key={record.id}>
+                    <td>{index + 1}</td>
+                    <td>{record.user.username}</td>
+                    <td>{getDuration(record.duration)}</td>
+                    <td>{record.innocentKills}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
+
         {!topRank && (
           <h3 className={styles.noRecord}>
             ----- You haven't played this mode -----
