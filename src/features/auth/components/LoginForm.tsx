@@ -62,7 +62,7 @@ const LoginForm = ({ changeForm }: AuthFormProps) => {
           />
         </div>
         <button type="submit">Login</button>
-        <p>
+        <p  className={styles.changeForm}>
           Doesn't have an account?{" "}
           <a
             onClick={(e) => {

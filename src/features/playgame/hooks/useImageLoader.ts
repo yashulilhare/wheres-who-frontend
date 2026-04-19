@@ -18,10 +18,7 @@ const useImageLoader = (imgSources: string[] | null) => {
 
     Promise.all(promises)
       .then(() => {
-        // todo: remove the setTimeout after testing
-        setTimeout(() => {
-          if (isMounted) setImagesLoaded(true);
-        }, 2000);
+        if (isMounted) setImagesLoaded(true);
       })
       .catch((err) => {
         console.error("Failed to load images", err);

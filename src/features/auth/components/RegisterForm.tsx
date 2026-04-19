@@ -74,7 +74,7 @@ const RegisterForm = ({ changeForm }: AuthFormProps) => {
           />
         </div>
         <button type="submit">Register</button>
-        <p>
+        <p className={styles.changeForm}>
           Already have an account?{" "}
           <a
             onClick={(e) => {

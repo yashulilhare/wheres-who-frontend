@@ -24,7 +24,7 @@ const useGameDataLoader = (mode: string) => {
     const startGameUrl = `${baseUrl}/playgame/start`;
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/auth/login");
+      navigate("/auth");
       return;
     }
     const bearerToken = `Bearer ${token}`;
@@ -48,8 +48,6 @@ const useGameDataLoader = (mode: string) => {
           setStartGameData(successData);
           setGameData(successData.gameData);
           setGameDataLoaded(true);
-          // todo: console
-          console.log(successData);
         } else if (!res.ok && res.status >= 400) {
           const errorData = (await res.json()) as StartGameError;
           setStartGameError(errorData);

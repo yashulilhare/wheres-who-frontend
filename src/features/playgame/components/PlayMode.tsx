@@ -1,35 +1,37 @@
-import Mode from "@/data/mode-data";
 import styles from "./PlayMode.module.css";
-import { useEffect, useState } from "react";
+import handleAttempt from "../api/handleSelect";
+import Mode from "@/data/mode-data";
+
 import StartGame from "./StartGame";
 import LoadingFull from "@/components/containers/LoadingFull";
 import { SelectCharacter } from "./SelectCharacter";
+import { ScoreBoard } from "@/features/scoreboard";
+import GameOver from "@/pages/gameover/GameOver";
+
+import { useEffect, useState } from "react";
 import useImageLoader from "../hooks/useImageLoader";
 import TimerContext from "../hooks/timerContext";
+import useGameDataLoader from "../hooks/useGameDataLoader";
+import { useNavigate } from "react-router-dom";
 
 import type { SelectCharData } from "@/features/playgame";
 
-import { ScoreBoard } from "@/features/scoreboard";
-import useGameDataLoader from "../hooks/useGameDataLoader";
 import type {
   AttemptResponse,
   AttemptSentData,
   AttemptSuccessResponse,
 } from "../types/playmode";
-import handleAttempt from "../api/handleSelect";
-import { useNavigate } from "react-router";
-import GameOver from "@/pages/gameover/GameOver";
 interface PlayModeProps {
   modeData: Mode | null;
   mode: string;
 }
 
-// root component
 const PlayMode = ({ modeData, mode }: PlayModeProps) => {
   const [isStarted, setIsStarted] = useState(false);
   const [gameCompleted, setGameCompleted] = useState(false);
   const [gameCompleteData, setGameCompleteData] =
     useState<AttemptSuccessResponse | null>(null);
+
   const [selectCharData, setSelectCharData] = useState<SelectCharData | null>(
     null,
   );
@@ -98,6 +100,8 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
   };
 
   const handleSelect = async (data: AttemptSentData) => {
+    const audio = new Audio("/src/assets/sounds/gunshot.mp3");
+    audio.play();
     const token = localStorage.getItem("token");
     if (!token) {
       navigate("/auth/login");
@@ -197,7 +201,7 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
           draggable="false"
         />
       )}
-      
+
       {gameCompleted && gameCompleteData && gameData && (
         <GameOver
           innocentKills={gameData.innocentKills}

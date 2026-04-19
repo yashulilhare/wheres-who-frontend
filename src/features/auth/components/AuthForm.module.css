@@ -45,3 +45,10 @@
   font-weight: 500;
   color: green;
 }
+.changeForm > a {
+  text-decoration: underline 1px solid black;
+  color: blue;
+}
+.changeForm > a:hover {
+  cursor: pointer;
+}

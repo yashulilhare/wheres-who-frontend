@@ -24,7 +24,7 @@ const StartGame = ({ startGame, characters }: StartGameProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.contentWrapper}>
-        <p>Characters to shot</p>
+        <p>You have been assigned these targets</p>
         <div className={styles.imgContainer}>
           {characters.map((char) => {
             return (
