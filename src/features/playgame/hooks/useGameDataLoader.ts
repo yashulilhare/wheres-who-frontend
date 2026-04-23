@@ -48,7 +48,7 @@ const useGameDataLoader = (mode: string) => {
           signal: controller.signal,
         });
 
-        if (res.ok && res.status <= 400) {
+        if (res.ok && res.status < 400) {
           const successData = (await res.json()) as StartGameData;
           setStartGameData(successData);
           setGameData(successData.gameData);
@@ -74,7 +74,10 @@ const useGameDataLoader = (mode: string) => {
     startGameData,
     gameDataLoaded,
     startGameError,
-    gameData,
+    gameData:
+      startGameData && gameData
+        ? { ...gameData, message: gameData?.message || startGameData.message , actionCode: gameData?.actionCode  || startGameData.actionCode}
+        : gameData,
     setGameData,
     restartGame,
   };

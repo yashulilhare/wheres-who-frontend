@@ -34,6 +34,8 @@ html {
   border: none;
   min-height: 100vh;
   display: flex;
+  scrollbar-width: thin;
+  scrollbar-color: yellow black;
 }
 
 body {
@@ -57,3 +59,21 @@ h5,
 h6 {
   font-family: "Cinzel", "Fredoka", "Google Sans", Inter;
 }
+
+/* ::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: gray;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: blue;
+  height: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} */

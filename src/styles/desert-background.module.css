@@ -1,9 +1,11 @@
 .main {
   background-image: url("/desert-background.jpg");
   background-position: center;
+  /* background-image: url("/dark.jpg"); */
   background-attachment: fixed;
   background-clip: border-box;
   background-size: cover;
   background-repeat: no-repeat;
   flex: 1;
+  background-color: black;
 }

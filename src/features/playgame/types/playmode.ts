@@ -28,6 +28,7 @@ interface GameCharacterData {
   found: boolean;
 }
 
+type ActionCode = "START" | "FAILED" | "SUCCESS" | "GAMEEND";
 interface GameData {
   // id is gameID
   id: string;
@@ -41,6 +42,8 @@ interface GameData {
   charactersFound: number;
   createdAt: string;
   updatedAt: string;
+  message: string;
+  actionCode: ActionCode;
 }
 
 // starting-game response data
@@ -53,6 +56,8 @@ interface StartGameData {
     exp: string;
   };
   gameData: GameData;
+  message: string;
+  actionCode: ActionCode;
 }
 
 interface StartGameError {
@@ -77,6 +82,7 @@ interface AttemptFailResponse {
   attemptResult: "FAILED";
   innocentKills: number;
   lastTimerScore: number;
+  actionCode: ActionCode;
 }
 
 interface AttemptSuccessResponse {
@@ -89,6 +95,7 @@ interface AttemptSuccessResponse {
   gameState: "CONTINUE" | "COMPLETED";
   username: string;
   topFive: GameRecord[];
+  actionCode: ActionCode;
 }
 
 type AttemptResponse = AttemptFailResponse | AttemptSuccessResponse;

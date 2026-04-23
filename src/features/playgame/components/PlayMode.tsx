@@ -21,6 +21,7 @@ import type {
   AttemptSentData,
   AttemptSuccessResponse,
 } from "../types/playmode";
+import { PopUp } from "@/features/popup";
 interface PlayModeProps {
   modeData: Mode | null;
   mode: string;
@@ -132,6 +133,8 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
           setGameData({
             ...gameData,
             innocentKills: resData.innocentKills,
+            message: resData.message,
+            actionCode: resData.actionCode,
           });
           return;
         }
@@ -144,6 +147,8 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
           setGameData({
             ...gameData,
             characterData: resData.characters,
+            message: resData.message,
+            actionCode: resData.actionCode,
           });
         }
       } else {
@@ -222,6 +227,13 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
           className={styles.img}
           onClick={handleClick}
           draggable="false"
+        />
+      )}
+      {isStarted && !gameCompleted && gameData && (
+        <PopUp
+          key={gameData.message}
+          message={gameData.message}
+          actionCode={gameData.actionCode}
         />
       )}
 

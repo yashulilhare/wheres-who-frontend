@@ -21,7 +21,12 @@ const PlayGround = () => {
   return (
     <main className={styles.main}>
       <SpaceBar borderBottom={true} />
-      <PlayMode mode={removeColon || "undrcity"} modeData={modeData || null} />
+      <div className={styles.gameContainer}>
+        <PlayMode
+          mode={removeColon || "undrcity"}
+          modeData={modeData || null}
+        />
+      </div>
       <SpaceBar borderTop={true} />
     </main>
   );
