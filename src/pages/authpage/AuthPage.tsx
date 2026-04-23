@@ -4,10 +4,12 @@ import RegisterForm from "@/features/auth/components/RegisterForm";
 import LoginForm from "@/features/auth/components/LoginForm";
 import { useState } from "react";
 
+
 const AuthPage = () => {
   const [selectedForm, setSelectedForm] = useState<"login" | "register">(
     "login",
   );
+
 
   const changeForm = (authMode: "login" | "register") => {
     setSelectedForm(authMode)

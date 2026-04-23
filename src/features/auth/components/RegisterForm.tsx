@@ -2,6 +2,9 @@ import styles from "./AuthForm.module.css";
 
 import { useState } from "react";
 import useRegister from "../hooks/useRegister";
+import { useOutletContext } from "react-router-dom";
+
+import type { MainOutletContext } from "@/types/main-outlet-types";
 import type { AuthFormProps } from "../types/form-types";
 
 interface AuthFormData {
@@ -14,8 +17,9 @@ const RegisterForm = ({ changeForm }: AuthFormProps) => {
     username: "",
     password: "",
   });
+  const { setToken } = useOutletContext<MainOutletContext>();
 
-  const { handleRegister, error } = useRegister();
+  const { handleRegister, error } = useRegister(setToken);
 
   if (error) {
     console.log(error);
@@ -37,13 +41,13 @@ const RegisterForm = ({ changeForm }: AuthFormProps) => {
       >
         {error && error.message && (
           <ul className={styles.errors}>
-            <li>{error.message}</li>
+            <li key={error.message}>{error.message}</li>
           </ul>
         )}
         {error && error.messageArray && (
           <ul className={styles.errors}>
             {error.messageArray.map((message) => {
-              return <li>{message.msg}</li>;
+              return <li key={message.msg}>{message.msg}</li>;
             })}
           </ul>
         )}

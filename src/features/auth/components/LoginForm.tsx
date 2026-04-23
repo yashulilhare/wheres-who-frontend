@@ -1,6 +1,9 @@
 import { useState } from "react";
 import styles from "./AuthForm.module.css";
 import useLogin from "../hooks/useLogin";
+import { useOutletContext } from "react-router-dom";
+
+import type { MainOutletContext } from "@/types/main-outlet-types";
 import type { AuthFormProps } from "../types/form-types";
 
 interface LoginData {
@@ -14,7 +17,9 @@ const LoginForm = ({ changeForm }: AuthFormProps) => {
     password: "",
   });
 
-  const { error, handleLogin } = useLogin();
+  const { setToken } = useOutletContext<MainOutletContext>();
+
+  const { error, handleLogin } = useLogin(setToken);
 
   return (
     <>
@@ -62,7 +67,7 @@ const LoginForm = ({ changeForm }: AuthFormProps) => {
           />
         </div>
         <button type="submit">Login</button>
-        <p  className={styles.changeForm}>
+        <p className={styles.changeForm}>
           Doesn't have an account?{" "}
           <a
             onClick={(e) => {

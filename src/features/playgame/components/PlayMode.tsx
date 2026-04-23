@@ -15,7 +15,7 @@ import useGameDataLoader from "../hooks/useGameDataLoader";
 import { useNavigate, useOutletContext } from "react-router-dom";
 
 import type { SelectCharData } from "@/features/playgame";
-
+import type { MainOutletContext } from "@/types/main-outlet-types";
 import type {
   AttemptResponse,
   AttemptSentData,
@@ -36,7 +36,7 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
     null,
   );
   const [optionsOpen, setOptionsOpen] = useState(false);
-  const soundToggle = useOutletContext<boolean>();
+  const outletData = useOutletContext<MainOutletContext>();
 
   const { gameData, gameDataLoaded, setGameData, restartGame } =
     useGameDataLoader(mode);
@@ -104,11 +104,12 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
   };
 
   const handleSelect = async (data: AttemptSentData) => {
-    if (soundToggle) {
+    if (outletData.soundToggle) {
       const audio = new Audio("/sounds/gunshot.mp3");
       audio.volume = 0.5;
       audio.play();
     }
+
     const token = localStorage.getItem("token");
     if (!token) {
       navigate("/auth");
@@ -117,30 +118,39 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
     const bearerToken = `Bearer ${token}`;
     try {
       const res = await handleAttempt(bearerToken, data);
-      if (!res.ok || res.status >= 400) {
-        const resData = await res.json();
-        console.error(resData);
-        return;
-      }
 
-      const resData = (await res.json()) as AttemptResponse;
-      if (resData.attemptResult === "FAILED" && gameData) {
-        setGameData({
-          ...gameData,
-          innocentKills: resData.innocentKills,
-        });
-        return;
-      }
-      if (resData.attemptResult === "SUCCESS" && gameData) {
-        if (resData.gameState === "COMPLETED") {
-          setGameCompleted(true);
-          setGameCompleteData(resData);
+      const contentType = res.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        const resData = (await res.json()) as AttemptResponse;
+
+        if (!res.ok || res.status >= 400) {
+          console.warn(`Server responded with status: ${res.status}`);
+          console.error(resData);
           return;
         }
-        setGameData({
-          ...gameData,
-          characterData: resData.characters,
-        });
+        if (resData.attemptResult === "FAILED" && gameData) {
+          setGameData({
+            ...gameData,
+            innocentKills: resData.innocentKills,
+          });
+          return;
+        }
+        if (resData.attemptResult === "SUCCESS" && gameData) {
+          if (resData.gameState === "COMPLETED") {
+            setGameCompleted(true);
+            setGameCompleteData(resData);
+            return;
+          }
+          setGameData({
+            ...gameData,
+            characterData: resData.characters,
+          });
+        }
+      } else {
+        const textError = await res.text();
+        throw new Error(
+          `Expected JSON, but received HTML/Text. Server says: ${textError.substring(0, 100)}...`,
+        );
       }
     } catch (err) {
       console.error(err);

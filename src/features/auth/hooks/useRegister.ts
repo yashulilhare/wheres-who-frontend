@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import register from "../api/register";
 
 import type { AuthData } from "../types/form-types";
@@ -18,9 +19,12 @@ interface ApiError {
   messageArray?: ValidationError[];
 }
 
-const useRegister = () => {
+const useRegister = (
+  setToken: React.Dispatch<React.SetStateAction<string | null>>,
+) => {
   const [error, setError] = useState<ApiError | null>(null);
   const [loading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleRegister = async (data: AuthData) => {
     setIsLoading(true);
@@ -39,6 +43,10 @@ const useRegister = () => {
       localStorage.setItem("token", resData.token);
       localStorage.setItem("user", JSON.stringify(resData.user));
 
+      if (resData.token) {
+        setToken(resData.token);
+        navigate("/");
+      }
     } catch (err) {
       console.error(err);
       setError({ message: "network connection lost;" } as ApiError);

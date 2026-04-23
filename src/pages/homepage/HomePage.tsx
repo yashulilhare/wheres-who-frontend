@@ -1,5 +1,3 @@
-"use strict";
-
 import backgroundStyles from "@/styles/desert-background.module.css";
 import styles from "./HomePage.module.css";
 import { Link } from "react-router-dom";
