@@ -2,30 +2,90 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 50px;
   padding-bottom: 100px;
 }
 
-.logoHeading {
-  font-family: "Viga", "Cizel";
-  font-size: 3rem;
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border-radius: 30%;
+  padding: 25px 20px;
+  /* border: 2px solid white; */
+  /* box-shadow:
+    2px 2px aqua,
+    -2px -2px aqua; */
+}
+
+/* .logoHeading {
+  font-family: "PressStart2P", "Jaro";
   color: transparent;
 
-  font-size: 64px;
+  font-size: 3.5rem;
   font-weight: 900;
 
   background: linear-gradient(to bottom, rgb(236, 210, 39), rgb(209, 136, 19));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin: 0;
+  padding: 0;
+} */
+
+.logoHeading {
+  font-family: "PressStart2P", "Jaro";
+  font-size: 3.5rem;
+  font-weight: 900;
+
+  color: whitesmoke;
+  text-shadow:
+    3px 3px #0096ff,
+    -3px -3px #0096ff,
+    30px 30px 30px #0096ff;
+  margin: 0;
+  padding: 0;
 }
 
+.shotgun {
+  height: 4rem;
+  width: 4rem;
+  margin: 0;
+  padding: 0;
+  display: inline;
+  /* background-color: #0096ff;
+  border-radius: 8px; */
+}
+
+.info {
+  color: gold;
+  border-bottom: 1px solid gold;
+}
 .infoPara {
-  font-size: 1.4rem;
+  position: relative;
+  font-size: 1.5rem;
   font-weight: 500;
-  margin: 10px;
-  color: black;
+  margin: 30px 0px;
+  /* color: rgb(229, 255, 246); */
+  color: #bae1fd;
   margin-bottom: 40px;
-  max-width: 800px;
-  text-align: center;
+  max-width: 1200px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #0096ff;
+  box-shadow: 3px 3px 20px #0096ff;
+}
+
+.authPara {
+  display: block;
+  margin: 0;
+  margin-top: 20px;
+  padding: 0;
+  text-align: start;
+  align-self: flex-start;
+}
+
+.authPara > a {
+  color: gold;
 }

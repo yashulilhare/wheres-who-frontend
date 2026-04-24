@@ -1,5 +1,6 @@
 import style from "./ModeCard.module.css";
 import { useNavigate } from "react-router-dom";
+import Tilt from "react-parallax-tilt";
 
 interface ModeCardProps {
   imageUrl: string;
@@ -29,10 +30,18 @@ const ModeCard = ({ imageUrl, pageUrl, pageName, altText }: ModeCardProps) => {
     }
   };
   return (
-    <div className={style.card} onClick={handleClick}>
-      <img src={imageUrl} alt={altText} />
-      <h2>{pageName}</h2>
-    </div>
+    <Tilt
+      tiltMaxAngleX={10}
+      tiltMaxAngleY={10}
+      glareEnable={false}
+      // glareMaxOpacity={0.45}
+      scale={1.05}
+    >
+      <div className={style.card} onClick={handleClick}>
+        <img src={imageUrl} alt={altText} />
+        <h2>{pageName}</h2>
+      </div>
+    </Tilt>
   );
 };
 

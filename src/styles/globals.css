@@ -1,5 +1,5 @@
 /* this file contain only global styles + css variables */
-@font-face {
+/* @font-face {
   font-family: "Cinzel";
   src: url("/fonts1/Cinzel-VariableFont_wght.ttf") format("truetype");
   font-display: swap;
@@ -14,12 +14,63 @@
   font-family: "Viga";
   src: url("/fonts1/Viga-Regular.ttf") format("truetype");
   font-display: swap;
+} */
+
+@font-face {
+  font-family: "Cinzel";
+  src: url("/fonts1/Cinzel-VariableFont_wght.ttf") format("truetype");
+  font-display: swap;
 }
 
+@font-face {
+  font-family: "EBGaramond";
+  src:
+    url("/fonts3/EBGaramond.woff2") format("woff2-variations"),
+    url("/fonts3/EBGaramond.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SpaceGrotesk";
+  src:
+    url("/fonts3/SpaceGrotesk.woff2") format("woff2-variations"),
+    url("/fonts3/SpaceGrotesk.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jaro";
+  src:
+    url("/fonts3/Jaro-Regular.woff2") format("woff2-variations"),
+    url("/fonts3/Jaro-Regular.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PressStart2P";
+  src:
+    url("/fonts3/PressStart2P.woff2") format("woff2-variations"),
+    url("/fonts3/PressStart2P.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ArchitectsDaughter";
+  src:
+    url("/fonts3/ArchitectsDaughter.woff2") format("woff2-variations"),
+    url("/fonts3/ArchitectsDaughter.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
 :root {
   font-family:
-    "Fredoka",
-    "Cinzel",
+    "EBGaramond",
+    "SpaceGrotesk",
+    "ArchitectsDaughter",
+    "Roboto",
     "Google Sans",
     system-ui,
     -apple-system;
@@ -59,21 +110,3 @@ h5,
 h6 {
   font-family: "Cinzel", "Fredoka", "Google Sans", Inter;
 }
-
-/* ::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: gray;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: blue;
-  height: 50px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-} */
