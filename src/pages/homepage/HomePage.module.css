@@ -6,58 +6,6 @@
   padding-bottom: 100px;
 }
 
-.logoContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  border-radius: 30%;
-  padding: 25px 20px;
-  /* border: 2px solid white; */
-  /* box-shadow:
-    2px 2px aqua,
-    -2px -2px aqua; */
-}
-
-/* .logoHeading {
-  font-family: "PressStart2P", "Jaro";
-  color: transparent;
-
-  font-size: 3.5rem;
-  font-weight: 900;
-
-  background: linear-gradient(to bottom, rgb(236, 210, 39), rgb(209, 136, 19));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 0;
-  padding: 0;
-} */
-
-.logoHeading {
-  font-family: "PressStart2P", "Jaro";
-  font-size: 3.5rem;
-  font-weight: 900;
-
-  color: whitesmoke;
-  text-shadow:
-    3px 3px #0096ff,
-    -3px -3px #0096ff,
-    30px 30px 30px #0096ff;
-  margin: 0;
-  padding: 0;
-}
-
-.shotgun {
-  height: 4rem;
-  width: 4rem;
-  margin: 0;
-  padding: 0;
-  display: inline;
-  /* background-color: #0096ff;
-  border-radius: 8px; */
-}
-
 .info {
   color: gold;
   border-bottom: 1px solid gold;
@@ -67,7 +15,6 @@
   font-size: 1.5rem;
   font-weight: 500;
   margin: 30px 0px;
-  /* color: rgb(229, 255, 246); */
   color: #bae1fd;
   margin-bottom: 40px;
   max-width: 1200px;
@@ -77,6 +24,10 @@
   box-shadow: 3px 3px 20px #0096ff;
 }
 
+.infoPara:hover {
+  border: 2px solid aqua;
+  box-shadow: 3px 3px 20px aqua;
+}
 .authPara {
   display: block;
   margin: 0;

@@ -47,6 +47,8 @@ const MainLayout = ({ buttons }: MainLayoutProps) => {
             url={button?.url || "/homepage"}
             text={button.text}
             className={button.className}
+            imgUrl={button.imgUrl}
+            origin={button.origin}
             key={button.text}
           />
         );

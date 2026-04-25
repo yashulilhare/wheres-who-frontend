@@ -1,4 +1,3 @@
-// import { useEffect, useState } from "react";
 import styles from "./PopUp.module.css";
 import { useState, useEffect } from "react";
 
@@ -6,11 +5,11 @@ type ActionCode = "START" | "FAILED" | "SUCCESS" | "GAMEEND";
 const getTheme = (actionCode: ActionCode) => {
   switch (actionCode) {
     case "START":
-      return "skyblue";
+      return "#bae1fd";
     case "FAILED":
-      return "red";
+      return "#f13a3a";
     case "SUCCESS":
-      return "green";
+      return "greenyellow";
     case "GAMEEND":
       return "greenyellow";
   }

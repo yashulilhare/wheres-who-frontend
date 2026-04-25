@@ -1,32 +1,8 @@
-/* .mainlayout-buttons {
-  display: inline-block;
-  padding: 14px 28px;
-  font-weight: bold;
-  font-size: 1.3rem;
-  text-decoration: none;
-  position: fixed;
-  color: #5a2e1a;
-  z-index: 99;
-  font-family:
-    "Cinzel",
-    "Fredoka",
-    "Google Sans",
-    system-ui,
-    -apple-system;
-
-  background: linear-gradient(#d9b47a, #c79a5c);
-  border-radius: 12px;
-
-  border: 3px solid #8b5a2b;
-
-  box-shadow:
-    inset 2px 2px 4px rgba(0, 0, 0, 0.4),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.3),
-    3px 4px 0 #5a2e1a;
-} */
-
 .mainlayout-buttons {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
   padding: 14px 28px;
   font-weight: bold;
   font-size: 1.3rem;
@@ -47,45 +23,30 @@
     -1px -1px #0096ff;
   border: 2px solid #0096ff;
   border-radius: 8px;
-  box-shadow: 1px 1px 5px #0096ff;
+  box-shadow: 1px 1px 5px;
+  background-color: black !important;
 }
-
+.mainlayout-buttons > * {
+  margin: 0;
+  padding: 0;
+}
+.logoIcon {
+  width: 2rem;
+  height: 2rem;
+  object-position: center;
+  object-fit: cover;
+}
 .mainlayout-buttons:visited {
   text-decoration: none;
   color: white;
 }
 
-/* .mainlayout-buttons:visited {
-  text-decoration: none;
-  color: #5a2e1a;
+.mainlayout-buttons:hover {
+  border: 2px solid aqua;
+  text-shadow:
+    1px 1px aqua,
+    -1px -1px aqua;
 }
-
-.mainlayout-buttons::before {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border-radius: 16px;
-
-  background: linear-gradient(#e0c08a, #b98a50);
-  border: 2px solid #6e4523;
-
-  z-index: -1;
-
-  box-shadow: 2px 3px 0 #4a2a15;
-}
-
-.mainlayout-buttons::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.2),
-    1px 1px 0 rgba(255, 255, 255, 0.2);
-
-  pointer-events: none;
-} */
 
 .top-left {
   top: 20px;
@@ -141,6 +102,32 @@
 
 .sound {
   position: relative;
+}
+.soundOn:hover::after {
+  content: "sound off";
+  position: absolute;
+  color: black;
+  background-color: white;
+  padding: 5px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  bottom: 90%;
+  left: 60%;
+  min-width: max-content;
+}
+.soundOff:hover::after {
+  content: "sound on";
+  position: absolute;
+  color: black;
+  background-color: white;
+  padding: 5px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  bottom: 90%;
+  left: 60%;
+  min-width: max-content;
 }
 
 .logout:hover::after {

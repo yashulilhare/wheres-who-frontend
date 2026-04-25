@@ -1,6 +1,8 @@
 import styles from "./GameOver.module.css";
 import LeaderboardCard from "./LeaderboardCard";
 import GameOverCard from "./GameOverCard";
+import Logo from "@/components/partials/Logo";
+
 import type { AttemptSuccessResponse } from "@/features/playgame/types/playmode";
 
 interface GameOverProps {
@@ -13,8 +15,7 @@ interface GameOverProps {
 const GameOver = (props: GameOverProps) => {
   return (
     <div className={`${styles.main}`}>
-      <h1 className={styles.logoHeading}>Where's Who?</h1>
-
+      <Logo />
       <div className={styles.container}>
         <GameOverCard
           timerScore={props.data.lastTimerScore}

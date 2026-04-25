@@ -36,7 +36,7 @@ const StartGame = ({ startGame, characters }: StartGameProps) => {
             );
           })}
         </div>
-        <button onClick={startGame}>Start</button>
+        <button onClick={startGame}>START</button>
       </div>
     </div>
   );

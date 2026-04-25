@@ -7,26 +7,67 @@ class LayoutButtonClass implements LayoutButton {
   text: string;
   url?: string;
   className: string;
-  constructor(position: number, text: string, className: string, url?: string) {
+  imgUrl: string;
+  origin: "SELF" | "CROSS";
+  constructor(
+    position: number,
+    text: string,
+    className: string,
+    imgUrl: string,
+    origin: "SELF" | "CROSS",
+    url?: string,
+  ) {
     this.position = position;
     this.text = text;
     this.url = url;
     this.className = className;
+    this.origin = origin;
+    this.imgUrl = imgUrl;
   }
 }
 
 const Button: ButtonClass = LayoutButtonClass;
 
-const logoButton = new Button(1, "Where's Who?", "top-left", "/");
+const logoButton = new Button(
+  1,
+  "Shot'Em",
+  "top-left",
+  "/icons/gun.png",
+  "SELF",
+  "/",
+);
 const leaderboardButton = new Button(
   2,
   "Leaderboard",
   "top-right",
+  "/icons/podium.png",
+  "SELF",
   "/leaderboard",
 );
-const creditButton = new Button(4, "Image Credits", "bottom-right", "/credits");
-const homepageButton = new Button(2, "Homepage", "top-right", "/");
-const githubButton = new Button(3, "GitHub", "bottom-left", "www.github.com");
+const creditButton = new Button(
+  4,
+  "Image Credits",
+  "bottom-right",
+  "/icons/content.png",
+  "SELF",
+  "/credits",
+);
+const homepageButton = new Button(
+  2,
+  "Homepage",
+  "/icons/gun.png",
+  "top-right",
+  "SELF",
+  "/",
+);
+const githubButton = new Button(
+  3,
+  "GitHub",
+  "bottom-left",
+  "/icons/github.png",
+  "CROSS",
+  "www.github.com",
+);
 
 // this is going to be an array
 export const homepageButtons = [

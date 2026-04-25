@@ -86,7 +86,7 @@ html {
   min-height: 100vh;
   display: flex;
   scrollbar-width: thin;
-  scrollbar-color: yellow black;
+  scrollbar-color: #0096ff black;
 }
 
 body {
@@ -108,5 +108,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Cinzel", "Fredoka", "Google Sans", Inter;
+  font-family:
+    "Cinzel", "ArchitectsDaughter", "EBGaramond", "Google Sans", Inter;
 }

@@ -3,6 +3,8 @@ export interface LayoutButton {
   text: string;
   position: number;
   className: string;
+  imgUrl: string;
+  origin: "SELF" | "CROSS";
 }
 
 export interface ButtonClass {
@@ -10,6 +12,8 @@ export interface ButtonClass {
     position: number,
     text: string,
     className: string,
+    imgUrl: string,
+    origin: "SELF" | "CROSS",
     url?: string,
   ): LayoutButton;
 }

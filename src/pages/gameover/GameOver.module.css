@@ -1,27 +1,24 @@
 .main {
   flex: 1;
   background-color: black;
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  /* justify-content: center; */
 }
 
-.logoHeading {
-  text-align: center;
-}
 .container {
   display: flex;
   max-width: max-content;
   justify-content: center;
   flex-wrap: wrap;
   gap: 100px;
+  margin-top: 2rem;
 }
 .card {
   flex: 1;
-  background-color: orange;
+  background-color: black;
+  border: 2px solid gold;
   border-radius: 8px;
   padding: 10px;
   display: flex;
@@ -36,6 +33,7 @@
   margin: 0;
   text-align: center;
   padding: 0;
+  color: gold;
 }
 .cardInfo {
   margin-bottom: 20px;
@@ -46,6 +44,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  color: white;
 }
 .gameInfo > li {
   display: flex;
@@ -56,7 +55,7 @@
   flex: 2;
   font-size: 1.1rem;
   font-weight: 500;
-  color: green;
+  color: aqua;
 }
 
 .dataValue {
@@ -64,14 +63,22 @@
 }
 .card > a {
   text-align: center;
-  background-color: red;
+  background-color: #0096ff;
   padding: 10px;
   border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 .card > a,
 .card > a:visited {
   text-decoration: none;
-  color: inherit;
+  color: white;
+}
+
+.card > a:hover {
+  transform: scale(1.02);
+  background-color: rgb(8, 204, 204);
 }
 
 .table {
@@ -80,6 +87,7 @@
   margin: 20px;
   padding: 10px;
   border-collapse: collapse;
+  color: white;
 }
 
 .table td,
@@ -87,4 +95,9 @@
   text-align: center;
   min-width: 10px;
   padding: 10px;
+}
+
+.table th {
+  color: aqua;
+  font-size: 1.1rem;
 }

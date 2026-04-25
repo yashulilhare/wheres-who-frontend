@@ -4,9 +4,10 @@
   top: 10px;
   transform: translateX(-50%);
   display: flex;
-  padding: 3px;
+  padding: 5px;
   gap: 8px;
-  background-color: orange;
+  /* background-color: black; */
+  border: 2px solidi #0096ff;
   border-radius: 8px;
 }
 
@@ -17,6 +18,8 @@
 }
 .imgCard {
   position: relative;
+  border: 3px solid aqua;
+  border-radius: 8px;
 }
 
 .imgCard > img {
@@ -44,7 +47,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: red;
+  background-color: black;
+  border: 3px solid aqua;
   border-radius: 8px;
   min-width: 100px;
   padding: 3px;

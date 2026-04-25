@@ -1,0 +1,32 @@
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border-radius: 30%;
+  padding: 25px 20px;
+}
+
+.logoHeading {
+  font-family: "PressStart2P", "Jaro";
+  font-size: 3.5rem;
+  font-weight: 900;
+
+  color: whitesmoke;
+  text-shadow:
+    3px 3px #0096ff,
+    -3px -3px #0096ff,
+    30px 30px 30px #0096ff;
+  margin: 0;
+  padding: 0;
+}
+
+.shotgun {
+  height: 4rem;
+  width: 4rem;
+  margin: 0;
+  padding: 0;
+  display: inline;
+  /* background-color: #0096ff;
+  border-radius: 8px; */
+}

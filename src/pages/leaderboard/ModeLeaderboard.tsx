@@ -13,13 +13,14 @@ const ModeLeaderboard = ({ leaderboard, topRank }: ModeLeaderboardProps) => {
     <div className={styles.card}>
       <div className={styles.cardTop}>
         <h2>{leaderboard.name}</h2>
-        <Link to={`/playgame/:${leaderboard.name}`}>
+        <Link to={`/playground/:${leaderboard.name}`}>
           play {leaderboard.name}
         </Link>
       </div>
       <div className={styles.topRanksContainer}>
         {leaderboard.records.length === 0 && (
           <h3
+            className={styles.empty}
             style={{
               textAlign: "center",
             }}
@@ -41,8 +42,10 @@ const ModeLeaderboard = ({ leaderboard, topRank }: ModeLeaderboardProps) => {
               {leaderboard.records.map((record, index) => {
                 return (
                   <tr key={record.id}>
-                    <td>{index + 1}</td>
-                    <td>{record.user.username}</td>
+                    <td className={styles.rankColumn}>{index + 1}</td>
+                    <td className={styles.usernameColumn}>
+                      {record.user.username}
+                    </td>
                     <td>{getDuration(record.duration)}</td>
                     <td>{record.innocentKills}</td>
                   </tr>
@@ -60,9 +63,11 @@ const ModeLeaderboard = ({ leaderboard, topRank }: ModeLeaderboardProps) => {
         {topRank && (
           <table className={styles.userTable}>
             <tbody>
-              <tr>
-                <td rowSpan={2}>Your Best</td>
-                <td>Rank</td>
+              <tr className={styles.userTableHeading}>
+                <td rowSpan={2} className={styles.userBest}>
+                  Your Best
+                </td>
+                <td className={styles.userRank}>Rank</td>
                 <td>Duration</td>
                 <td>InnocentKills</td>
               </tr>

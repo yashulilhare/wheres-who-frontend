@@ -4,6 +4,7 @@
   flex: 1;
   padding: 100px 10px;
 }
+
 .headingSection {
   margin-bottom: 100px;
 }
@@ -13,10 +14,18 @@
 }
 .headingSection > h2 {
   margin-top: 50px;
+  color: gold;
+  font-family: "PressStart2P", "Jaro";
 }
 .mainHeading {
   font-size: 3rem;
   text-align: center;
+  color: whitesmoke;
+  text-shadow:
+    3px 3px #0096ff,
+    -3px -3px #0096ff,
+    30px 30px 30px #0096ff;
+  font-family: "PressStart2P", "Jaro";
 }
 
 .cardContainer {
@@ -32,11 +41,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: skyblue;
+  background-color: black;
+  border: 3px solid #0096ff;
   border-radius: 8px;
   min-height: 300px;
+  transition: transform 200ms ease-in;
 }
 
+.card:hover {
+  transform: scale(1.03);
+}
 .cardTop {
   display: flex;
   justify-content: space-between;
@@ -51,17 +65,26 @@
   margin: 0;
   padding: 0;
 }
-
+.cardTop > h2 {
+  color: gold;
+}
 .cardTop > a {
   text-decoration: none;
   color: inherit;
-  background-color: yellow;
+  background-color: #0096ff;
+  color: white;
+  font-weight: 600;
   border-radius: 8px;
   padding: 5px;
 }
 .cardTop > a:visited {
   text-decoration: none;
   color: inherit;
+}
+
+.cardTop > a:hover {
+  transform: scale(1.05);
+  background-color: rgb(8, 197, 197);
 }
 
 .topRanksContainer {
@@ -76,11 +99,52 @@
 .table {
   text-align: center;
 }
+
+.table th {
+  color: aqua;
+  font-size: 1.1rem;
+}
+.table {
+  color: white;
+}
+
+.empty {
+  color: aqua;
+}
+
+.rankColumn {
+  color: gold;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.usernameColumn {
+  color: greenyellow;
+  font-size: 1rem;
+}
+
 .userTable,
 .noRecord {
   text-align: center;
   padding: 10px 0;
   margin-top: 10px;
-  background-color: beige;
+  background-color: black;
+  border-top: 1px solid #0096ff;
   border-radius: 8px;
+  color: white;
+}
+
+.noRecord {
+  color: gold;
+}
+.userBest {
+  font-size: 1.2rem;
+  color: gold;
+  font-weight: 800;
+}
+
+.userTableHeading {
+  color: aquamarine;
+  font-size: 1.1rem;
+  font-weight: 600;
 }

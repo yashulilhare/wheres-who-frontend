@@ -10,8 +10,9 @@
 .contentWrapper {
   display: flex;
   flex-direction: column;
-  background-color: rgb(243, 69, 98);
-  border: 3px solid orange;
+  background-color: black;
+  border: 2px solid #0096ff;
+  box-shadow: 3px 3px 20px #0096ff;
   padding: 20px;
   gap: 20px;
   border-radius: 8px;
@@ -20,14 +21,26 @@
   font-size: 1.5rem;
   text-align: center;
   width: 100%;
-  background-color: yellow;
   border-radius: 8px;
+  color: aqua;
+  font-family:
+    "Cinzel", "ArchitectsDaughter", "EBGaramond", "Google Sans", Inter;
+  background-color: 1px solid #0096ff;
 }
 
 .contentWrapper > button {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   padding: 5px;
-  border-radius: 8px;
+  border-radius: 10%;
+  font-family:
+    "Cinzel", "ArchitectsDaughter", "EBGaramond", "Google Sans", Inter;
+  color: black;
+  font-weight: 900;
+  background-color: orange;
+}
+.contentWrapper > button:hover {
+  transform: scale(1.02);
+  background-color: rgb(255, 172, 18);
 }
 
 /* ImageCard styles */
@@ -53,7 +66,7 @@
 }
 .imgCard > p {
   margin: 0;
-  color: gold;
+  color: rgb(252, 231, 114);
   font-size: 1.1rem;
   text-align: center;
 }
