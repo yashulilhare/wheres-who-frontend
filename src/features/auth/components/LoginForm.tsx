@@ -24,8 +24,8 @@ const LoginForm = ({ changeForm }: AuthFormProps) => {
   return (
     <>
       <p className={styles.instructions}>
-        Welcome back. Just one step before you can play the game. <br />
-        Use the form below to Login.
+        Welcome back. Just one step before you can start your duty. <br />
+        Fill in your detail to Re-Join the army.
       </p>
       <form
         className={styles.form}
@@ -68,7 +68,7 @@ const LoginForm = ({ changeForm }: AuthFormProps) => {
         </div>
         <button type="submit">Login</button>
         <p className={styles.changeForm}>
-          Doesn't have an account?{" "}
+          Don't have an account?{" "}
           <a
             onClick={(e) => {
               e.preventDefault();

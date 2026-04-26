@@ -16,7 +16,12 @@ const MainLayoutButton = ({
 }: MainLayoutButtonProps) => {
   if (origin === "CROSS") {
     return (
-      <a href={url} className={`${className} mainlayout-buttons`}>
+      <a
+        href={url}
+        className={`${className} mainlayout-buttons`}
+        rel="no-opener"
+        target="_blank"
+      >
         <img src={imgUrl} aria-hidden className="logoIcon" />
         <span>{text}</span>
       </a>

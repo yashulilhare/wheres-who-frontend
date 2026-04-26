@@ -14,7 +14,7 @@ const HomePage = () => {
       <p className={styles.infoPara}>
         <span className={styles.info}>Info:</span>
         <br />
-        There are people and animals have committed deadly crimes and gone
+        There are people and creatures who committed deadly crimes and went
         hidden in different universes. Your job is to hunt them down and shot
         them on the spot as quick as you can. The quicker you shot all the
         criminals assigned to you with minimal innocent kills, the better you
@@ -23,8 +23,10 @@ const HomePage = () => {
         <br />
         {!token && (
           <span className={styles.authPara}>
-            Wait! looks like you are not logged in.{" "}
-            <Link to={"/auth"}>Click here to Register/Login</Link>
+            But! looks like you are not ready to join the mission yet.{" "}
+            <Link to={"/auth"}>
+              Click here to register OR log in your account
+            </Link>
           </span>
         )}
       </p>

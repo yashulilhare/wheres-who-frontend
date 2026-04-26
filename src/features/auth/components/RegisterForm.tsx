@@ -28,7 +28,7 @@ const RegisterForm = ({ changeForm }: AuthFormProps) => {
   return (
     <>
       <p className={styles.instructions}>
-        Wait! Wait! You need to register to the game so your score would be
+        You need to register so your score would be
         yours and safe. <br />
         Use the form below to Register.
       </p>

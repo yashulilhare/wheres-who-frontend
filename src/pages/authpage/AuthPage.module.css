@@ -1,7 +1,14 @@
 .main {
-  display: flex;
   flex: 1;
+  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.container {
+  border: 2px solid #0096ff;
+  /* box-shadow: 3px 3px 20px aqua; */
+  padding: 20px;
+  border-radius: 8px;
 }

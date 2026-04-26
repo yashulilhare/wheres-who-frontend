@@ -2,7 +2,8 @@
   min-width: 500px;
   display: flex;
   flex-direction: column;
-  background-color: rgb(247, 187, 75);
+  background-color: black;
+  color: white;
   padding: 30px;
   border-radius: 8px;
   gap: 20px;
@@ -15,27 +16,29 @@
 }
 
 .inputContainer > label {
-  color: white;
-  font-weight: 400;
+  color: #0096ff;
+  font-weight: 600;
   font-size: 1.1rem;
 }
 
 .inputContainer > input {
-  outline: 1px solid gray;
-  border: 1px solid gray;
-  padding: 5px;
-  border-radius: 8px;
+  outline: 1px solid #0096ff;
+  border: 1px solid #0096ff;
+  padding: 8px;
+  border-radius: 4px;
   font-size: 1.1rem;
 }
 
 .form > button {
-  background-color: rgb(240, 64, 64);
+  background-color: #0096ff;
   font-size: 1.1rem;
   padding: 8px;
   border: none;
   color: white;
   border-radius: 8px;
   font-weight: 500;
+  padding: 10px;
+  font-weight: 600;
 }
 
 .instructions {
@@ -43,11 +46,16 @@
   line-height: 1.8;
   font-size: 1.4rem;
   font-weight: 500;
-  color: green;
+  color: gold;
+  font-family: "Cinzel";
+}
+
+.changeForm {
+  font-size: 1.1rem;
 }
 .changeForm > a {
-  text-decoration: underline 1px solid black;
-  color: blue;
+  text-decoration: underline 1px solid aqua;
+  color: aqua;
 }
 .changeForm > a:hover {
   cursor: pointer;

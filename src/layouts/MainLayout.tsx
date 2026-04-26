@@ -44,7 +44,7 @@ const MainLayout = ({ buttons }: MainLayoutProps) => {
       {buttons.map((button) => {
         return (
           <MainLayoutButton
-            url={button?.url || "/homepage"}
+            url={button?.url || "/"}
             text={button.text}
             className={button.className}
             imgUrl={button.imgUrl}
