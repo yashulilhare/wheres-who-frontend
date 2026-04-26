@@ -221,13 +221,15 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
         )}
 
       {!gameCompleted && (
-        <img
-          src={modeData?.modeImageUrl}
-          alt={modeData?.description}
-          className={styles.img}
-          onClick={handleClick}
-          draggable="false"
-        />
+        <div className={styles.imageGame}>
+          <img
+            src={modeData?.modeImageUrl}
+            alt={modeData?.description}
+            className={styles.img}
+            onClick={handleClick}
+            draggable="false"
+          />
+        </div>
       )}
       {isStarted && !gameCompleted && gameData && (
         <PopUp

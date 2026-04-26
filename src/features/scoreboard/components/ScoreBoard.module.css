@@ -6,7 +6,6 @@
   display: flex;
   padding: 5px;
   gap: 8px;
-  /* background-color: black; */
   border: 2px solidi #0096ff;
   border-radius: 8px;
 }
@@ -69,4 +68,36 @@
   font-size: 1.1rem;
   color: white;
   font-weight: 500;
+}
+
+@media screen and (max-width: 1150px) {
+  .container {
+    top: 100px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .imageContainer {
+    gap: 4px;
+  }
+
+  .imgCard,
+  .scoreContainer {
+    border-width: 1px;
+  }
+
+  .imgCard > img {
+    width: 70px;
+    height: 70px;
+  }
+  .cardTitle,
+  .score {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .imgCard > img {
+    width: 60px;
+    height: 60px;
+  }
 }

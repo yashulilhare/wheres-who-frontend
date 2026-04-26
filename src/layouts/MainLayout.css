@@ -141,3 +141,31 @@
   font-size: 1.1rem;
   top: -3px;
 }
+
+@media screen and (max-width: 576px) {
+  .mainlayout-buttons {
+    gap: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  .logoIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .footerButtons {
+    width: 30px;
+  }
+  .logout {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .mainlayout-buttons {
+    gap: 5px;
+    padding: 2px 5px;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+}

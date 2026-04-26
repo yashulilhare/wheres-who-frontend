@@ -1,11 +1,7 @@
 .form {
-  min-width: 500px;
+  color: white;
   display: flex;
   flex-direction: column;
-  background-color: black;
-  color: white;
-  padding: 30px;
-  border-radius: 8px;
   gap: 20px;
 }
 
@@ -21,29 +17,45 @@
   font-size: 1.1rem;
 }
 
-.inputContainer > input {
-  outline: 1px solid #0096ff;
-  border: 1px solid #0096ff;
+.inputContainer > input,
+.form > button {
   padding: 8px;
   border-radius: 4px;
   font-size: 1.1rem;
 }
-
+.inputContainer > input {
+  outline: 1px solid #0096ff;
+  border: 1px solid #0096ff;
+}
 .form > button {
   background-color: #0096ff;
-  font-size: 1.1rem;
-  padding: 8px;
   border: none;
+  outline: none;
   color: white;
-  border-radius: 8px;
-  font-weight: 500;
-  padding: 10px;
+  padding: 12px 5px;
   font-weight: 600;
+}
+
+.errors {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.errors > li::marker {
+  content: "!";
+}
+.errors > li,
+.errors > li::marker {
+  color: red;
+  font-size: 1.1rem;
+}
+.errors > li {
+  padding: 2px 10px;
 }
 
 .instructions {
   text-align: center;
-  line-height: 1.8;
   font-size: 1.4rem;
   font-weight: 500;
   color: gold;
@@ -59,4 +71,16 @@
 }
 .changeForm > a:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 576px) {
+  .inputContainer > input,
+  .form > button {
+    font-size: 1rem;
+    padding: 5px 4px;
+  }
+
+  .instructions {
+    font-size: 1rem;
+  }
 }

@@ -15,7 +15,7 @@ const routes: RouteObject[] = [
   {
     path: "/",
     element: <MainLayout buttons={homepageButtons} />,
-    
+
     children: [
       {
         element: <HomePage />,
@@ -28,6 +28,9 @@ const routes: RouteObject[] = [
       { path: "auth", element: <AuthPage /> },
       { path: "leaderboard", element: <Leaderboard /> },
     ],
+  },
+  {
+    errorElement: <div></div>,
   },
 ];
 

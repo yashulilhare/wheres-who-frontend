@@ -56,3 +56,9 @@
   transform-origin: left;
   border-radius: 5px;
 }
+
+@media screen and (max-width: 1150px) {
+  .box {
+    top: 200px;
+  }
+}

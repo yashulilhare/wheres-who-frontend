@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px;
   padding-top: 50px;
   padding-bottom: 100px;
 }
@@ -39,4 +40,10 @@
 
 .authPara > a {
   color: gold;
+}
+
+@media screen and (max-width: 576px) {
+  .infoPara {
+    font-size: 1.1rem;
+  }
 }

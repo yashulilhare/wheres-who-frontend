@@ -1,16 +1,24 @@
+.imageGame {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
 .img {
+  display: block;
   width: 100%;
   height: auto;
-  padding: 0;
-  margin: 0;
-  border: none;
-  outline: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  pointer-events: auto;
-  cursor:
-    url("/src/assets/icons/crosshair-64.png") 32 32,
-    url("/src/assets/icons/crosshair-red.png") 16 16,
-    url("/src/assets/icons/crosshair-focus.png"),
-    auto;
 }
+
+@media screen and (max-width: 1024px) {
+  .imageGame {
+    display: flex;
+    max-width: 100vw;
+    overflow: auto;
+  }
+  .img {
+    max-width: 1024px;
+    width: auto;
+    height: auto;
+  }
+}
+

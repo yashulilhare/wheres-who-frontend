@@ -46,7 +46,7 @@ const leaderboardButton = new Button(
 );
 const creditButton = new Button(
   4,
-  "Image Credits",
+  "Credits",
   "bottom-right",
   "/icons/content.png",
   "SELF",

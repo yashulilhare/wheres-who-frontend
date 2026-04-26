@@ -3,11 +3,13 @@
   flex-direction: column;
   flex: 1;
   padding: 100px 10px;
+  /* align-items: center; */
 }
 
 .headingSection {
   margin-bottom: 100px;
 }
+
 .headingSection > * {
   margin: 0;
   text-align: center;
@@ -30,7 +32,7 @@
 
 .cardContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 500px));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 500px));
   justify-content: center;
   grid-gap: 30px;
 }
@@ -147,4 +149,15 @@
   color: aquamarine;
   font-size: 1.1rem;
   font-weight: 600;
+}
+
+@media screen and (max-width: 1024px) {
+  .mainHeading {
+    font-size: 1.5rem;
+  }
+  .headingSection > h2 {
+    font-size: 1.3rem;
+  }
+}
+@media screen and (max-width: 576px) {
 }
