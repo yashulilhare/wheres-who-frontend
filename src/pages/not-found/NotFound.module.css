@@ -1,0 +1,43 @@
+.main {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  color: whitesmoke;
+}
+
+.main h1 {
+  color: whitesmoke;
+  text-shadow:
+    1px 1px #0096ff,
+    -1px -1px #0096ff,
+    30px 30px 30px #0096ff;
+  font-size: 2.6rem;
+  margin: 20px;
+}
+
+.notFound {
+  margin: 0;
+  padding: 0;
+  font-size: 2rem;
+  color: white;
+  text-shadow:
+    1px 1px #0096ff,
+    -1px -1px #0096ff,
+    30px 30px 30px #0096ff;
+}
+
+.message,
+.message > a {
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 5px#0096ff;
+}
+
+.message > a:visited {
+  color: #0096ff;
+}

@@ -10,11 +10,13 @@ import HomePage from "@/pages/homepage/HomePage";
 import PlayGround from "@/pages/playground/PlayGround";
 import AuthPage from "@/pages/authpage/AuthPage";
 import Leaderboard from "@/pages/leaderboard/Leaderboard";
+import NotFound from "@/pages/not-found/NotFound";
 
 const routes: RouteObject[] = [
   {
     path: "/",
     element: <MainLayout buttons={homepageButtons} />,
+    errorElement: <NotFound />,
 
     children: [
       {
@@ -32,6 +34,7 @@ const routes: RouteObject[] = [
   {
     errorElement: <div></div>,
   },
+  { path: "*", element: <NotFound /> },
 ];
 
 export const router = createBrowserRouter(routes);
