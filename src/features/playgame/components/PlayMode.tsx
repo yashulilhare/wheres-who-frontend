@@ -233,7 +233,7 @@ const PlayMode = ({ modeData, mode }: PlayModeProps) => {
       )}
       {isStarted && !gameCompleted && gameData && (
         <PopUp
-          key={gameData.message}
+          key={gameData.message + gameData.innocentKills}
           message={gameData.message}
           actionCode={gameData.actionCode}
         />
