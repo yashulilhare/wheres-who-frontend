@@ -1,6 +1,6 @@
 import { useState } from "react";
 import loginUser from "../api/login";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 import type { AuthData } from "../types/form-types";
 import type { ApiAuthResponse } from "../types/api-types";
@@ -30,7 +30,6 @@ const useLogin = (
       }
 
       const successData = (await res.json()) as ApiAuthResponse;
-      console.log(successData);
 
       localStorage.setItem("token", successData.token);
       localStorage.setItem("user", JSON.stringify(successData.user));

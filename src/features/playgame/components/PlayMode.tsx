@@ -27,6 +27,7 @@ interface PlayModeProps {
   mode: string;
 }
 
+// this is main component handling the game logic
 const PlayMode = ({ modeData, mode }: PlayModeProps) => {
   const [isStarted, setIsStarted] = useState(false);
   const [gameCompleted, setGameCompleted] = useState(false);

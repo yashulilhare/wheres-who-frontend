@@ -17,10 +17,10 @@ const MainLayoutButton = ({
   if (origin === "CROSS") {
     return (
       <a
-        href={`https://${url}`}
+        href={url}
         className={`${className} mainlayout-buttons`}
-        rel="noopener noreferrer"
         target="_blank"
+        title="Project Github Link"
       >
         <img src={imgUrl} aria-hidden className="logoIcon" />
         <span>{text}</span>

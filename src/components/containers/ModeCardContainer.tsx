@@ -1,5 +1,3 @@
-"use strict";
-
 import styles from "./ModeCardContainer.module.css";
 import ModeCard from "../cards/ModeCard";
 

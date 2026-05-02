@@ -19,7 +19,7 @@ const MainLayout = ({ buttons }: MainLayoutProps) => {
   const [token, setToken] = useState(jwt);
 
   useEffect(() => {
-    // when using free server then server may be kept on sleep, sending a request as soon as DOM loads to activate it
+    // sending a request as soon as dom loaded to activate the server (in the case where server is put on sleep)
     const startServer = async () => {
       const baseUrl = import.meta.env.VITE_API_BASE_URL;
       const initAuthUrl = `${baseUrl}/me`;

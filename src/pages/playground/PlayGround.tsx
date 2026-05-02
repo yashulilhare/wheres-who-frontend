@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { PlayMode } from "@/features/playgame";
 
 import { modeList } from "@/data/mode-data";

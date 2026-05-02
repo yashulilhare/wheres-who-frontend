@@ -1,37 +1,25 @@
 /* this file contain only global styles + css variables */
-/* 
-@font-face {
-  font-family: "Fredoka";
-  src: url("/fonts1/Fredoka-VariableFont_wdth,wght.ttf") format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Viga";
-  src: url("/fonts1/Viga-Regular.ttf") format("truetype");
-  font-display: swap;
-} */
-
-@font-face {
-  font-family: "Cinzel";
-  src: url("/fonts1/Cinzel-VariableFont_wght.ttf") format("truetype");
-  font-display: swap;
-}
 
 @font-face {
   font-family: "EBGaramond";
   src:
-    url("/fonts3/EBGaramond.woff2") format("woff2-variations"),
-    url("/fonts3/EBGaramond.woff2") format("woff2");
+    url("/fonts/EBGaramond.woff2") format("woff2-variations"),
+    url("/fonts/EBGaramond.woff2") format("woff2");
   font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cinzel";
+  src: url("/fonts/Cinzel-VariableFont_wght.ttf") format("truetype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "SpaceGrotesk";
   src:
-    url("/fonts3/SpaceGrotesk.woff2") format("woff2-variations"),
-    url("/fonts3/SpaceGrotesk.woff2") format("woff2");
+    url("/fonts/SpaceGrotesk.woff2") format("woff2-variations"),
+    url("/fonts/SpaceGrotesk.woff2") format("woff2");
   font-weight: 100 900;
   font-display: swap;
 }
@@ -39,8 +27,8 @@
 @font-face {
   font-family: "Jaro";
   src:
-    url("/fonts3/Jaro-Regular.woff2") format("woff2-variations"),
-    url("/fonts3/Jaro-Regular.woff2") format("woff2");
+    url("/fonts/Jaro-Regular.woff2") format("woff2-variations"),
+    url("/fonts/Jaro-Regular.woff2") format("woff2");
   font-weight: 100 900;
   font-display: swap;
 }
@@ -48,16 +36,16 @@
 @font-face {
   font-family: "PressStart2P";
   src:
-    url("/fonts3/PressStart2P.woff2") format("woff2-variations"),
-    url("/fonts3/PressStart2P.woff2") format("woff2");
+    url("/fonts/PressStart2P.woff2") format("woff2-variations"),
+    url("/fonts/PressStart2P.woff2") format("woff2");
   font-weight: 100 900;
   font-display: swap;
 }
 @font-face {
   font-family: "ArchitectsDaughter";
   src:
-    url("/fonts3/ArchitectsDaughter.woff2") format("woff2-variations"),
-    url("/fonts3/ArchitectsDaughter.woff2") format("woff2");
+    url("/fonts/ArchitectsDaughter.woff2") format("woff2-variations"),
+    url("/fonts/ArchitectsDaughter.woff2") format("woff2");
   font-weight: 100 900;
   font-display: swap;
 }

@@ -5,6 +5,7 @@ interface SpaceBarProps {
   borderTop?: boolean;
 }
 
+// this component is used as empty horizontal space with custom styling
 const SpaceBar = ({ borderBottom, borderTop }: SpaceBarProps) => {
   return (
     <div

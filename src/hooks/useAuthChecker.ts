@@ -38,7 +38,6 @@ const useAuthChecker = () => {
           const resData = (await res.json()) as AuthResponse;
 
           if (!res.ok || res.status >= 400) {
-            console.log("this was <=400");
             console.error(resData);
             console.warn(`Server responded with status: ${res.status}`);
           }
@@ -53,8 +52,6 @@ const useAuthChecker = () => {
           }
 
           if (resData.success) {
-            console.log("so is it success?");
-            console.log(resData);
             const userString = JSON.stringify(resData.user);
             localStorage.setItem("token", resData.token);
             localStorage.setItem("user", userString);
@@ -62,14 +59,12 @@ const useAuthChecker = () => {
             setAuthError(null);
           }
         } else {
-          console.log("got this one no success ");
           const textError = await res.text();
           throw new Error(
             `Expected JSON, but received HTML/Text. Server says: ${textError.substring(0, 100)}...`,
           );
         }
       } catch (err) {
-        console.log("got this one in catch");
         console.error(err);
         setAuthState("INVALID");
         setAuthError("Something went wrong");

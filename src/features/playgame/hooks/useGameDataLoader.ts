@@ -6,7 +6,7 @@ import type {
   StartGameData,
   StartGameError,
 } from "../types/playmode";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const useGameDataLoader = (mode: string) => {
   const navigate = useNavigate();
@@ -76,7 +76,11 @@ const useGameDataLoader = (mode: string) => {
     startGameError,
     gameData:
       startGameData && gameData
-        ? { ...gameData, message: gameData?.message || startGameData.message , actionCode: gameData?.actionCode  || startGameData.actionCode}
+        ? {
+            ...gameData,
+            message: gameData?.message || startGameData.message,
+            actionCode: gameData?.actionCode || startGameData.actionCode,
+          }
         : gameData,
     setGameData,
     restartGame,

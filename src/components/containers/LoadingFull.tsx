@@ -1,5 +1,6 @@
 import styles from "./LoadingFull.module.css";
 
+// this component shows Loading state covering full screen - used between page loads
 const LoadingFull = () => {
   return (
     <div className={styles.container}>

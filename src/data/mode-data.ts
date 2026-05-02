@@ -1,5 +1,6 @@
 "use strict";
 
+// storing information such as name, url, img source, etc about modes available in the game
 class Mode {
   imageUrl: string;
   pagePath: string;

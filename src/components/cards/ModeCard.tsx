@@ -10,10 +10,7 @@ interface ModeCardProps {
 }
 
 const ModeCard = ({ imageUrl, pageUrl, pageName, altText }: ModeCardProps) => {
-  // todo: if yes then fetch server for information for the game
-  // two possibilities : 1. successfull data fetch then move forward with the game.
-  // 2. failed fetch. 1) may be auth error like expired token so send code that tells it was an auth error. -> redirect them to login page
-  // 2) if auth  is not available then some internal error occured ->  show that error as disappearing alert error
+
   const navigate = useNavigate();
 
   const redirectTo = (route: string) => {
@@ -34,7 +31,6 @@ const ModeCard = ({ imageUrl, pageUrl, pageName, altText }: ModeCardProps) => {
       tiltMaxAngleX={10}
       tiltMaxAngleY={10}
       glareEnable={false}
-      // glareMaxOpacity={0.45}
       scale={1.05}
     >
       <div className={style.card} onClick={handleClick}>

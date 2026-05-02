@@ -1,5 +1,4 @@
 import styles from "./AuthPage.module.css";
-// import backgroundStyles from "@/styles/desert-background.module.css";
 import RegisterForm from "@/features/auth/components/RegisterForm";
 import LoginForm from "@/features/auth/components/LoginForm";
 import { useState } from "react";

@@ -6,7 +6,6 @@ import type {
   GameCharacterData,
   AttemptSentData,
 } from "../types/playmode";
-// import type { CheckData } from "@/mock-server/getGameData";
 
 interface SelectCharacterProps {
   characters: GameCharacterData[];

@@ -1,4 +1,6 @@
 "use strict";
+//info: there was going to be different buttons on  different pages so this separate file was created to provide ordered list of buttons per page.
+// But as only homepage buttons were used on all pages so other data are removed and keeping the remaining setup
 
 import type { ButtonClass, LayoutButton } from "@/types/layout-button-types";
 
@@ -52,33 +54,19 @@ const creditButton = new Button(
   "SELF",
   "/credits",
 );
-const homepageButton = new Button(
-  2,
-  "Homepage",
-  "/icons/gun.png",
-  "top-right",
-  "SELF",
-  "/",
-);
+
 const githubButton = new Button(
   3,
   "GitHub",
   "bottom-left",
   "/icons/github.png",
   "CROSS",
-  "www.github.com",
+  "https://github.com/yashulilhare/wheres-who-frontend",
 );
 
-// this is going to be an array
 export const homepageButtons = [
   logoButton,
   leaderboardButton,
-  githubButton,
-  creditButton,
-];
-export const leaderboardButtons = [
-  logoButton,
-  homepageButton,
   githubButton,
   creditButton,
 ];
