@@ -30,9 +30,6 @@ const InnocentKills = ({ innocentKills }: { innocentKills: number }) => {
   );
 };
 
-// interface TimerProps {
-//   resumeFrom: number;
-// }
 const formatTime = (seconds: number): string => {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);

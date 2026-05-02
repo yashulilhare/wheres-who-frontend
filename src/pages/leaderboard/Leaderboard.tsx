@@ -39,7 +39,6 @@ const Leaderboard = () => {
         }
         const data = (await res.json()) as LeaderboardResponse;
         setData(data);
-        console.log(data);
       } catch (err) {
         console.error(err);
       }

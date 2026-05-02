@@ -10,6 +10,7 @@ import HomePage from "@/pages/homepage/HomePage";
 import PlayGround from "@/pages/playground/PlayGround";
 import AuthPage from "@/pages/authpage/AuthPage";
 import Leaderboard from "@/pages/leaderboard/Leaderboard";
+import Credits from "./pages/credits/Credit";
 import NotFound from "@/pages/not-found/NotFound";
 
 const routes: RouteObject[] = [
@@ -29,6 +30,7 @@ const routes: RouteObject[] = [
       },
       { path: "auth", element: <AuthPage /> },
       { path: "leaderboard", element: <Leaderboard /> },
+      { path: "credits", element: <Credits /> },
     ],
   },
   {

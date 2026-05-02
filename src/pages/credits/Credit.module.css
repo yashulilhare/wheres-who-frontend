@@ -1,0 +1,60 @@
+.main {
+  flex: 1;
+  padding: 50px 20px 70px;
+  background-color: black;
+  color: white;
+  display: grid;
+  grid-template-columns: minmax(0px, 800px);
+  grid-auto-rows: max-content;
+  justify-content: center;
+  align-items: start;
+}
+
+.creditPara {
+  color: #bae1fd;
+  max-width: 900px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 15px;
+  align-items: center;
+  border: 1px solid #0096ff;
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.card > * {
+  margin: 0;
+  padding: 0;
+}
+.card > h1 {
+  font-size: 1.5rem;
+  color: gold;
+}
+
+.creditPara > a,
+.creditPara > a:visited,
+.card > p > a,
+.card > p > a:visited {
+  color: #0096ff;
+  text-decoration: underline #0096ff;
+}
+
+.card > p {
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 765px) {
+  .card {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+  }
+  .card > h1 {
+    font-size: 1.3rem;
+  }
+}
