@@ -28,6 +28,7 @@ const LoginForm = ({ changeForm }: AuthFormProps) => {
         Fill in your detail to Re-Join the army.
       </p>
       <form
+        autoComplete="on"
         className={styles.form}
         onSubmit={(e) => {
           e.preventDefault();
@@ -47,7 +48,7 @@ const LoginForm = ({ changeForm }: AuthFormProps) => {
             id="username"
             value={formData.username}
             name="username"
-            autoComplete="current-username"
+            autoComplete="username"
             onChange={(e) => {
               setFormData({ ...formData, username: e.target.value });
             }}
