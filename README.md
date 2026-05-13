@@ -1,73 +1,103 @@
-# React + TypeScript + Vite
+# Shot'Em (Frontend) : Similar to Where's Waldo - search the characters
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains frontend application code for Shot'Em : a game similar to Where's Waldo where players have to search for characters from a photo containing many crowded characters.
 
-Currently, two official plugins are available:
+## Table of contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## App Showcase
 
-## React Compiler
+| Homepage desktop view                                           |
+| --------------------------------------------------------------- |
+| <img max-width="80vw" src="./public/demo/homepage-desktop.png"> |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Game Playing view                                               |
+| --------------------------------------------------------------- |
+| <img max-width="80vw" src="./public/demo/gamepage-desktop.png"> |
 
-## Expanding the ESLint configuration
+| Leaderboard desktop view                                           |
+| ------------------------------------------------------------------ |
+| <img max-width="80vw" src="./public/demo/leaderboard-desktop.png"> |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Homepage Smartphone view                                       | Game Playing Smartphone view                                        | Leaderboard Page Smartphone View                                 |
+| -------------------------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| <img max-width="30vw" src="./public/demo/homepage-phone.png" > | <img max-width="30vw" src="./public/demo/gamepage-smartphone.png" > | <img max-width="30vw" src="./public/demo/leaderboard-phone.png"> |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Introduction
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+This is a full stack web based game built as a part of project submission in [The Odin Project](https://www.theodinproject.com) full stack web development curriculum. The game has 3 different images / modes with different characters, user can choose any mode they want to play. Upon selecting a mode 3 random character will be chosen from the mode and user has to find all the characters to complete the game. User can see global ranking upon Game Ending page and Leaderboard page
+
+### Features
+
+- This game uses backend server to handle the game logic. Which helps in preventing cheating in scores as move calculations are handled on backend itself.
+- Authenticate user using username and password.
+- Use JWT for keeping active sessions and storing user credentials.
+- Using REST API based backend design for score checking and resource sharing.
+- Preserve players data and scores using databases.
+
+## Tech Stack
+
+### Frontend
+
+- HTML
+- CSS
+- Javascript
+- Typescript
+- React + CSS Modules
+
+### Other Tools and Skill Stack
+
+- ESlint
+- Prettier
+- VS Code
+- Jest
+- NPM
+- Git
+- Figma
+
+## Project Structure
+
+```
+shot'em frontend
+|
+|-- index.html
+|-- /src
+|   |--main.tsx
+|   |--router.tsx
+|   |-- /assets
+|   |-- /utils
+|   |-- /lib
+|   |-- /data
+|   |-- /components
+|   |-- /hooks
+|   |-- /pages
+|   |-- /layouts
+|   |-- /types
+|   |-- /styles
+|   |-- /features
+|       |-- /feature-folder
+|           |-- index.ts
+|           |-- /api
+|           |-- /components
+|           |-- /hooks
+|           |-- /types
+|
+|-- /public
+|-- package.json
+|-- package.lock.json
+|-- eslint.config.js
+|-- tsconfig.json
+|-- vite.config.ts
+|-- .gitignore
+|-- .env
+|-- README.md
+|-- LICENSE
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Contact
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- [Email](mailto:lilhareyashu@gmail.com)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## License
+
+All rights reserved under MIT License
