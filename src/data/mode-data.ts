@@ -24,7 +24,7 @@ class Mode {
 }
 
 export const undrcity = new Mode(
-  "./src/assets/images/undrcity-compressed.jpg",
+  "/images/undrcity-compressed.jpg",
   "undrcity",
   "Undrcity",
   "Image is banner for Undrcity mode.",
@@ -32,7 +32,7 @@ export const undrcity = new Mode(
 );
 
 export const universe113 = new Mode(
-  "./src/assets/images/universe113-compressed.jpg",
+  "/images/universe113-compressed.jpg",
   "universe113",
   "Universe113",
   "Image is banner for universe113 mode.",
@@ -40,7 +40,7 @@ export const universe113 = new Mode(
 );
 
 export const pokeverse = new Mode(
-  "./src/assets/images/pokeverse-compressed.jpg",
+  "/images/pokeverse-compressed.jpg",
   "pokeverse",
   "Pokeverse",
   "pokeverse mode images demo",
