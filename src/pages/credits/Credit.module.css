@@ -1,7 +1,12 @@
 .main {
   flex: 1;
   padding: 50px 20px 70px;
-  background-color: black;
+  background-image: linear-gradient(
+    to bottom right,
+    black,
+    rgb(22, 22, 22),
+    black
+  );
   color: white;
   display: grid;
   grid-template-columns: minmax(0px, 800px);

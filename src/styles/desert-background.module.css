@@ -5,5 +5,10 @@
   background-size: cover;
   background-repeat: no-repeat;
   flex: 1;
-  background-color: black;
+  background-image: linear-gradient(
+    to bottom right,
+    black,
+    rgb(22, 22, 22),
+    black
+  );
 }
