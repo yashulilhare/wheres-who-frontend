@@ -1,6 +1,7 @@
 # Shot'Em (Frontend) : a game Similar to Where's Waldo
 
 This repository contains frontend application code for Shot'Em : a game similar to Where's Waldo where players have to search for characters from a photo containing many crowded characters. [Click here to go to Backend Repository](https://github.com/yashulilhare/wheres-who-server)
+## [Play Game online](https://shotem.vercel.app/)
 
 ## Table of contents
 
