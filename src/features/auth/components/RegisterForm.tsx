@@ -28,11 +28,11 @@ const RegisterForm = ({ changeForm }: AuthFormProps) => {
   return (
     <>
       <p className={styles.instructions}>
-        You need to register so your score would be
-        yours and safe. <br />
+        You need to register so your score would be yours and safe. <br />
         Use the form below to Register.
       </p>
       <form
+        autoComplete="on"
         className={styles.form}
         onSubmit={(e) => {
           e.preventDefault();
@@ -59,6 +59,7 @@ const RegisterForm = ({ changeForm }: AuthFormProps) => {
             id="username"
             value={formData.username}
             name="username"
+            autoComplete="username"
             onChange={(e) => {
               setFormData({ ...formData, username: e.target.value });
             }}
